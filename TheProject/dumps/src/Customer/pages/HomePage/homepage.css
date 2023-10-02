@@ -1,0 +1,7 @@
+body{
+    background-image: url('/Pictures/HomePageBackGround.jpg');
+    background-size: cover; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    background-attachment: fixed; 
+
+}
