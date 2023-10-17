@@ -13,10 +13,26 @@ public class orders {
 private Long order_id;
 private String datetime;
 
-@ManyToOne(optional = false)
+
+@ManyToOne(fetch = FetchType.EAGER)
 private User user;
 
+@OneToOne
+private order_details order_details;
 
+
+    @OneToOne
+    @JoinColumn(name = "payment_id")
+    private payment payment;
+
+
+    public orders(Long order_id, String datetime, User user, com.shahroz.FoodDeliverySBandReact.entities.order_details order_details, com.shahroz.FoodDeliverySBandReact.entities.payment payment) {
+        this.order_id = order_id;
+        this.datetime = datetime;
+        this.user = user;
+        this.order_details = order_details;
+        this.payment = payment;
+    }
 
     public User getUser() {
         return user;
@@ -26,11 +42,26 @@ private User user;
         this.user = user;
     }
 
+    public com.shahroz.FoodDeliverySBandReact.entities.order_details getOrder_details() {
+        return order_details;
+    }
+
+    public void setOrder_details(com.shahroz.FoodDeliverySBandReact.entities.order_details order_details) {
+        this.order_details = order_details;
+    }
+
+    public com.shahroz.FoodDeliverySBandReact.entities.payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(com.shahroz.FoodDeliverySBandReact.entities.payment payment) {
+        this.payment = payment;
+    }
+
     public orders(Long order_id, String datetime, Long user_id, Long id, User user) {
         this.order_id = order_id;
         this.datetime = datetime;
 
-        this.user = user;
     }
 
     public orders() {

@@ -1,10 +1,12 @@
 package com.shahroz.FoodDeliverySBandReact.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+import org.hibernate.cache.spi.support.AbstractReadWriteAccess;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Category {
@@ -15,7 +17,34 @@ public class Category {
 
     private String category_name;
 
-    private Long food_id;
+
+    private Long Noofitems;
+
+    @OneToMany( cascade = CascadeType.ALL,mappedBy = "category")
+    private List<fooditem> fooditemList;
+
+    public Category(Long category_id, String category_name, Long noofitems, List<fooditem> fooditemList) {
+        this.category_id = category_id;
+        this.category_name = category_name;
+        Noofitems = noofitems;
+        this.fooditemList = fooditemList;
+    }
+
+    public Long getNoofitems() {
+        return Noofitems;
+    }
+
+    public void setNoofitems(Long noofitems) {
+        Noofitems = noofitems;
+    }
+
+    public List<fooditem> getFooditemList() {
+        return fooditemList;
+    }
+
+    public void setFooditemList(List<fooditem> fooditemList) {
+        this.fooditemList = fooditemList;
+    }
 
     public Category() {
     }
@@ -23,7 +52,7 @@ public class Category {
     public Category(Long category_id, String category_name, Long food_id) {
         this.category_id = category_id;
         this.category_name = category_name;
-        this.food_id = food_id;
+
     }
 
     public Long getCategory_id() {
@@ -42,11 +71,4 @@ public class Category {
         this.category_name = category_name;
     }
 
-    public Long getFood_id() {
-        return food_id;
-    }
-
-    public void setFood_id(Long food_id) {
-        this.food_id = food_id;
-    }
 }

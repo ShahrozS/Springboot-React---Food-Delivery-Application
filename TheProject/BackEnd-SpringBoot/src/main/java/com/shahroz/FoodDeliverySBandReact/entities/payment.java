@@ -1,10 +1,7 @@
 package com.shahroz.FoodDeliverySBandReact.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class payment {
@@ -12,13 +9,28 @@ public class payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long payment_id;
-    private Long order_id;
+
+
+
+
+
+
+
+    @OneToOne()
+    private orders order_id;
     private double amount;
+
+    private String Mode;
+    private Double TaxPercent;
+
+
 
     public payment() {
     }
 
-    public payment(Long payment_id, Long order_id, double amount) {
+
+
+    public payment(Long payment_id, orders order_id, double amount) {
         this.payment_id = payment_id;
         this.order_id = order_id;
         this.amount = amount;
@@ -32,11 +44,11 @@ public class payment {
         this.payment_id = payment_id;
     }
 
-    public Long getOrder_id() {
+    public orders getOrder_id() {
         return order_id;
     }
 
-    public void setOrder_id(Long order_id) {
+    public void setOrder_id(orders order_id) {
         this.order_id = order_id;
     }
 

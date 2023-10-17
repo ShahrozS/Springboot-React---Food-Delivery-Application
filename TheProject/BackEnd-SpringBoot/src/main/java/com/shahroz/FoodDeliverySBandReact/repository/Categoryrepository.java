@@ -1,8 +1,9 @@
 package com.shahroz.FoodDeliverySBandReact.repository;
 
 import com.shahroz.FoodDeliverySBandReact.entities.Category;
-import com.shahroz.FoodDeliverySBandReact.entities.payment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface categoryrepository extends JpaRepository<Category,Long> {
+
+public interface Categoryrepository extends JpaRepository<Category,Long> {
 }

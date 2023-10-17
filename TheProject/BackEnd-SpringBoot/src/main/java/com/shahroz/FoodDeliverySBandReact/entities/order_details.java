@@ -1,9 +1,10 @@
 package com.shahroz.FoodDeliverySBandReact.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 public class order_details
@@ -13,19 +14,35 @@ public class order_details
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long slip_id;
-   private Long order_id;
-   private Long food_id;
+
+
+   @OneToOne
+   private orders order_id;
+
+   @ManyToOne
+   @JoinColumn(name = "food_id")
+   private fooditem foodItem;
    private int quantity;
+
+   public order_details(Long slip_id, orders order_id, fooditem foodItem, int quantity) {
+      this.slip_id = slip_id;
+      this.order_id = order_id;
+      this.foodItem = foodItem;
+      this.quantity = quantity;
+   }
+
+   public fooditem getFoodItem() {
+      return foodItem;
+   }
+
+   public void setFoodItem(fooditem foodItem) {
+      this.foodItem = foodItem;
+   }
 
    public order_details() {
    }
 
-   public order_details(Long slip_id, Long order_id, Long food_id, int quantity) {
-      this.slip_id = slip_id;
-      this.order_id = order_id;
-      this.food_id = food_id;
-      this.quantity = quantity;
-   }
+
 
    public Long getSlip_id() {
       return slip_id;
@@ -35,21 +52,14 @@ public class order_details
       this.slip_id = slip_id;
    }
 
-   public Long getOrder_id() {
+   public orders getOrder_id() {
       return order_id;
    }
 
-   public void setOrder_id(Long order_id) {
+   public void setOrder_id(orders order_id) {
       this.order_id = order_id;
    }
 
-   public Long getFood_id() {
-      return food_id;
-   }
-
-   public void setFood_id(Long food_id) {
-      this.food_id = food_id;
-   }
 
    public int getQuantity() {
       return quantity;
