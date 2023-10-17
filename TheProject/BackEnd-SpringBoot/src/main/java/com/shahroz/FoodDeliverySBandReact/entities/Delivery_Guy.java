@@ -15,7 +15,7 @@ public class Delivery_Guy {
     private String name;
     private String vehicle;
 
-    @OneToMany(mappedBy = "Delivery_Guy")
+    @OneToMany(mappedBy = "deliveryGuy")
     private List<delivery> Delivery_id;
 
     private Long NoofOrders;

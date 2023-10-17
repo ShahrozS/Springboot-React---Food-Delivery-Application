@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.shahroz.FoodDeliverySBandReact.FoodDeliverySBandReactApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 11.923 s - in com.shahroz.FoodDeliverySBandReact.FoodDeliverySBandReactApplicationTests
