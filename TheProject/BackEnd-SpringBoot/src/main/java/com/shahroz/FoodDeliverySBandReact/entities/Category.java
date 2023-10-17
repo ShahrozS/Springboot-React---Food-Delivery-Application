@@ -20,14 +20,13 @@ public class Category {
 
     private Long Noofitems;
 
-    @OneToMany( cascade = CascadeType.ALL,mappedBy = "category")
-    private List<fooditem> fooditemList;
+
 
     public Category(Long category_id, String category_name, Long noofitems, List<fooditem> fooditemList) {
         this.category_id = category_id;
         this.category_name = category_name;
         Noofitems = noofitems;
-        this.fooditemList = fooditemList;
+
     }
 
     public Long getNoofitems() {
@@ -38,13 +37,7 @@ public class Category {
         Noofitems = noofitems;
     }
 
-    public List<fooditem> getFooditemList() {
-        return fooditemList;
-    }
 
-    public void setFooditemList(List<fooditem> fooditemList) {
-        this.fooditemList = fooditemList;
-    }
 
     public Category() {
     }

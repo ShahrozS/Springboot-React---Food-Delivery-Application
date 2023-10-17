@@ -24,5 +24,12 @@ public class CategoryService implements CategoryServiceInterface {
         return categoryrepository.save(category);
     }
 
+    @Override
+    public void deleteCategory(Long id) {
+        categoryrepository.deleteById(id);
+    }
+
+
+
 
 }
