@@ -4,7 +4,10 @@ import './App.css';
 import HomePage from './Customer/pages/HomePage/homepage';
 import SignUp from './Customer/Login_Register/SignUp';
 import { BrowserRouter as Router, Route ,Routes} from 'react-router-dom';
-import Categories from './Customer/pages/categories';
+import Categories from './Admin/Categories/Categories';
+
+
+
 
 
 
@@ -23,8 +26,9 @@ function App() {
         <Route path="/" element={<HomePage/>} />
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/categories" element={<Categories/>}/>
+       
     
-      
+           
       
       </Routes>
     </Router>

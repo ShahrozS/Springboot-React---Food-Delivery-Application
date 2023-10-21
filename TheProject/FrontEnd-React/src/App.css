@@ -1,38 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+ 
+}
+
+body {
+
+
+  justify-content: center;
+  align-items: center;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1 {
+  color: #fff;
+  margin-bottom: 0.5rem;
+  font-size: 1.75rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.Categories {
+ 
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+  margin-top: 5rem;
+  padding: 2rem;
+  border-radius: 0px;
+  text-align: center;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+ 
+}
+
+.categoryForm {
+  width: 100%;
+  margin-bottom: 1rem;
+  align-items: center;
+  text-align: center;
+}
+
+.category-input {
+  outline: none;
+  background: none;
+  border: 1px solid #064e3b;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 600px;
+  color: #fff;
+  border-radius: 24px;
+}
+
+.category-input::placeholder {
+  color: #ffffff4d;
+}
+
+.category-btn {
+  background: #064e3b;
+  background-color: #064e3b;
+  
+  color: #fff;
+  border: none;
+  padding: 0.55rem;
+  cursor: pointer;
+}
+
+.category {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#31a05f;
+  font-weight: 200;
   color: white;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  width:900px;
+  text-align: center;
+  align-self: center;
+margin: 0 auto;
+margin-bottom: 1rem; 
+
 }
 
-.App-link {
-  color: #61dafb;
+.fa-trash {
+  margin-left: 0.75rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.incompleted {
+  color: #fff;
+  cursor: pointer;
 }
+
+.completed {
+  color: #c5aeff;
+  text-decoration: line-through;
+  cursor: pointer;
+}
+
+.edit-icon,
+.delete-icon {
+  cursor: pointer;
+}
+ 
+
+/* 
+ for form */
+
+
+ .FormTextFeild{
+
+border-radius: 24px;
+padding-bottom: 5px;
+padding-top: 5px;
+width: 250px;
+height: 32px;
+margin-bottom: 1rem ;
+
+
+
+
+
+ }
