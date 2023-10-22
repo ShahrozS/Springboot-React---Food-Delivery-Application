@@ -5,7 +5,7 @@ import FooditemsAll from './FooditemsAll'
 import NavbarAdmin from '../../Navbar';
 
 
-export const Fooditems = () => {
+export const Fooditems = ({category}) => {
 
 // const {categories,setTodos}= useState([
 
@@ -18,7 +18,7 @@ export const Fooditems = () => {
       <NavbarAdmin/>
     <div className='Categories  backdrop-blur-sm'>
     
-    <FooditemsAll/>
+    <FooditemsAll category={category} />
    
 
     </div>

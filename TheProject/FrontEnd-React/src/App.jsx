@@ -14,7 +14,11 @@ import AdminHome from './Admin/Home/Home';
 
 //aosdjaasdas
 
-
+const categories = [
+  { name: 'Contiental' },
+  { name: 'Chinese Rice' },
+  // Add more categories here
+];
 
 
 function App() {
@@ -27,9 +31,24 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/admin/home/categories"element ={<Categories/>}/>
         <Route path="/admin/home/FoodItems" element={<Mainpage/>}/>
-        <Route path="/FoodItems/ShowAll" element={<Fooditems/>}/>
-        <Route path="/FoodItems/ShowAll/addItem" element={<FoodItemForm/>}/>
         <Route path="/admin/home"element={<AdminHome/>}/>
+        // Food Item According categories routse:
+        
+        {categories.map((category) => (
+          <Route
+            key={category.name}
+            path={`/admin/home/FoodItems/${category.name}/ShowAll`}
+            element={<Fooditems category={category.name} />}
+          />
+        ))}
+           {categories.map((category) => (
+          <Route
+            key={category.name}
+            path={`/admin/home/FoodItems/${category.name}/ShowAll/addItem`}
+            element={<FoodItemForm category={category.name} />}
+          />
+        ))}
+        
         </Routes>
     </Router>
 

@@ -11,7 +11,7 @@ export default {
     'lightdark':'#064e3b',
     'white':'#ffffff',
     'black':'#000000',
-    
+    'red' : '#de5050',
 
 
 

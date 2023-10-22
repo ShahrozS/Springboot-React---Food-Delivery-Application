@@ -13,7 +13,7 @@ export const CategoryForm = () => {
   return (
     <form className='categoryForm' onSubmit={handleSubmit}>
       <input
-       type='text' className='category-input text-black font-semibold border-3' placeholder='Enter a new Category' onChange={(e)=>setValue(e.target.value)}/>
+       type='text' className='category-input text-black  placeholder-black font-semibold border-3' placeholder='Enter a new Category' onChange={(e)=>setValue(e.target.value)}/>
       <button type='submit' className='category-btn bg-lightdark rounded-lg ml-2' >Enter
 
       </button>

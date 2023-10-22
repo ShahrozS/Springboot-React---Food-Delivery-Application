@@ -20,3 +20,7 @@ module.exports = {
 
 
 npm i @heroicons/react
+
+
+
+fortawesom, go to its website and download all

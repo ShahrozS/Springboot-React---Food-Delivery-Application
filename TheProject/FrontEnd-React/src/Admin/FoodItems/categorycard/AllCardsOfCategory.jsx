@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react'
 import CardsOfCategory from './CardsOfCategory';
+import { Link } from 'react-router-dom';
 
 
 export  function AllCardsOfCategory() {
@@ -22,7 +23,10 @@ export  function AllCardsOfCategory() {
         <div className="grid grid-cols-3 gap-4 p-4">
 {
   cards.length > 0 ? cards.map(item=>(
+    <Link to={`/admin/home/FoodItems/${item.name}/ShowAll`}>
     <CardsOfCategory  categoryname={item} />
+    </Link>
+      
       )):"No categories"
 }
     </div>

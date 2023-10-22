@@ -1,12 +1,14 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
+import { Link } from 'react-router-dom'
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Home', Link:'/admin/home', href: '#', current: true },
+  { name: 'Categories',Link:'/admin/home/Categories', href: '#', current: false },
+  { name: 'Food Items', Link:'/admin/home/FoodItems',href: '#', current: false },
+  { name: 'Users',Link:'/admin/home/Users', href: '#', current: false },
+  { name: 'Orders',Link:'/admin/home/Orders', href: '#', current: false },
+
 ]
 
 function classNames(...classes) {
@@ -43,17 +45,18 @@ export default function NavbarAdmin() {
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
                     {navigation.map((item) => (
-                      <a
+                    <Link to={item.Link}> <a
                         key={item.name}
                         href={item.href}
+                        Link={item.Link}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
-                      >
+                      > 
                         {item.name}
-                      </a>
+                      </a></Link> 
                     ))}
                   </div>
                 </div>
@@ -131,10 +134,12 @@ export default function NavbarAdmin() {
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
-                <Disclosure.Button
+             
+                <Disclosure.Button 
                   key={item.name}
                   as="a"
                   href={item.href}
+                  Link={item.Link}
                   className={classNames(
                     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                     'block rounded-md px-3 py-2 text-base font-medium'
@@ -142,7 +147,7 @@ export default function NavbarAdmin() {
                   aria-current={item.current ? 'page' : undefined}
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Disclosure.Button>  
               ))}
             </div>
           </Disclosure.Panel>
