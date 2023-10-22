@@ -9,5 +9,10 @@ public interface FooditemServiceInterface {
 
     List<fooditem> findByCategory(Category category);
 
+    public fooditem save(fooditem fooditem);
+
+    public void deleteFoodItem(String id);
+    public List<fooditem>  FindAllFood();
+
 
 }

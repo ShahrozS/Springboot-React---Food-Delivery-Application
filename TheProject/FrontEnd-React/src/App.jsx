@@ -46,10 +46,10 @@ function App() {
             key={category.name}
             path={`/admin/home/FoodItems/${category.name}/ShowAll/addItem`}
             element={<FoodItemForm category={category.name} />}
-          />
+          />  
         ))}
         
-        </Routes>
+        </Routes> 
     </Router>
 
 

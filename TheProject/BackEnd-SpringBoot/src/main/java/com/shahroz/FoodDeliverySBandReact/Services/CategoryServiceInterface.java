@@ -10,5 +10,8 @@ public interface CategoryServiceInterface {
     public Category createCategory(Category category);
     void deleteCategory(Long id);
 
+     Long FindByName(String name);
+
+    Category findById(Long id);
 
 }

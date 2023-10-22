@@ -29,7 +29,16 @@ public class CategoryService implements CategoryServiceInterface {
         categoryrepository.deleteById(id);
     }
 
+    @Override
+    public Long FindByName(String name) {
+        return categoryrepository.findByName(name);
+    }
 
+    @Override
+    public Category findById(Long id) {
+        return categoryrepository.findById(id).orElse(null);
+
+    }
 
 
 }

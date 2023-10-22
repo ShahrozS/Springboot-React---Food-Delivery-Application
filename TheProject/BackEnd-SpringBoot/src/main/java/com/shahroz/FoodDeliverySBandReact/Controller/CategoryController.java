@@ -14,16 +14,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/categories")
+@RequestMapping("admin/home/Categories")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
 
-@PostMapping("create")
+@PostMapping("/create")
 public ResponseEntity<?> createCategory(@RequestBody Category category){
     System.out.println("Workssss");
+    System.out.println("Category name: "+category.getCategory_name());
     Category newCategory = categoryService.createCategory(category);
     return ResponseEntity.ok(newCategory );
 }
@@ -46,9 +47,15 @@ public ResponseEntity<?> createCategory(@RequestBody Category category){
     }
 
     @DeleteMapping("/{id}")
-    public void deleteCategory(@PathVariable Long id){
-        categoryService.deleteCategory(id);
-
+    public ResponseEntity<String> deleteCategory(@PathVariable String id){
+        try {
+            long categoryId = Long.parseLong(id);
+            categoryService.deleteCategory(categoryId);
+            return ResponseEntity.ok("Category with ID " + categoryId + " deleted successfully");
+        } catch (NumberFormatException e) {
+            System.out.println(e + id);
+            return ResponseEntity.badRequest().body("Invalid ID: " + id);
+        }
     }
 
 

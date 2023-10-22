@@ -18,7 +18,6 @@ public class fooditem {
 
     @ManyToOne
     private Category category;
-
     public fooditem(Long food_id, String food_name, String description, double price, String ingredients, Category category) {
         this.food_id = food_id;
         this.food_name = food_name;

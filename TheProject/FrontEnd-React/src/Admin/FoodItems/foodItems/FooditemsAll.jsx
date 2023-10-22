@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import FoodItems, { Food } from './fooditem';
 import { Link } from 'react-router-dom';
@@ -8,13 +8,34 @@ export  function FooditemsAll({category}) {
 
   //isme db se samaaan ayega  
   const[fooditems , setfooditems] = useState([
-    {name:"Contiental" , price:"24 Rs"} ,
-    {name:"Contiental" , price:"24 Rs"} ,
-    {name:"Contiental" , price:"24 Rs"} ,
-    {name:"Contiental" , price:"24 Rs"} ,
-
   ]);
   
+  useEffect(() => {
+    // Fetch categories from the Spring Boot backend
+    fetch(`http://localhost:8090/admin/home/FoodItems/${category}/ShowAll` , {
+      method: 'GET',
+     
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json(); // Assuming the response is JSON data
+        } else {
+          console.log(response)
+          throw new Error('Failed to fetch categories.');
+        }
+      })
+      .then((data) => {
+        console.log(data)
+        setfooditems(data); // Update the state with fetched categories
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+  
+
+
+
     return ( 
     <div><h1 className=' mb-4 font-semibold text-4xl text-black'>All Food Items in </h1>
     <Link to={`/admin/home/FoodItems/${category}/ShowAll/addItem`}>
@@ -22,7 +43,7 @@ export  function FooditemsAll({category}) {
     </Link>
 {
   fooditems.length > 0 ? fooditems.map(item=>(
-    <Food  fooditem={item} />
+    <Food  fooditem={item} category={category} />
       )):"No Items"
 }
 

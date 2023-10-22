@@ -18,4 +18,20 @@ public class FooditemService implements FooditemServiceInterface {
     public List<fooditem> findByCategory(Category category) {
         return fooditemrepository.findByCategory(category);
     }
+
+    @Override
+    public fooditem save(fooditem fooditem) {
+    return fooditemrepository.save(fooditem);
+    }
+
+    @Override
+    public void deleteFoodItem(String id) {
+    fooditemrepository.deleteById(Long.parseLong(id));
+    }
+
+    public List<fooditem>  FindAllFood(){
+        return fooditemrepository.findAll();
+    }
+
+
 }
