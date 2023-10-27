@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Optional;
 public interface UserServiceInterface {
 
-    public User saveEmployee(User user);
-    public Optional<User> getUserById(Long id);
-    List<User> getAllUser();
+    public User createUser(User user);
+    public User findById(Long id);
+    List<User> getUsers();
     User updateUser(Long id, User user);
-    void deleteEmployee();
+    void deleteUser(Long id);
+
+    User findByEmail(String email);
 
 
 

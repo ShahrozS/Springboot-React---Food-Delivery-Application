@@ -31,7 +31,12 @@ public class CategoryService implements CategoryServiceInterface {
 
     @Override
     public Long FindByName(String name) {
-        return categoryrepository.findByName(name);
+
+        System.out.println("Name in Cat Service " + name);
+        Category cat = categoryrepository.findByName(name);
+
+
+        return cat.getId();
     }
 
     @Override

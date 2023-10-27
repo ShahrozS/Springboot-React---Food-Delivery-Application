@@ -24,7 +24,7 @@ public class CategoryController {
 @PostMapping("/create")
 public ResponseEntity<?> createCategory(@RequestBody Category category){
     System.out.println("Workssss");
-    System.out.println("Category name: "+category.getCategory_name());
+    System.out.println("Category name: "+category.getName());
     Category newCategory = categoryService.createCategory(category);
     return ResponseEntity.ok(newCategory );
 }
@@ -48,7 +48,10 @@ public ResponseEntity<?> createCategory(@RequestBody Category category){
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable String id){
-        try {
+        System.out.println("CHECKINGGGGGGG");
+
+    try {
+
             long categoryId = Long.parseLong(id);
             categoryService.deleteCategory(categoryId);
             return ResponseEntity.ok("Category with ID " + categoryId + " deleted successfully");

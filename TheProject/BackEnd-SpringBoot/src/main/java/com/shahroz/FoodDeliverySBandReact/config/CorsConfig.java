@@ -23,6 +23,13 @@ public class CorsConfig {
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(List.of("*"));
 
+
+        config.addAllowedOrigin("http://localhost:5173"); // Add your frontend URL
+        config.addAllowedMethod("*");
+        config.addAllowedHeader("*");
+
+
+
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter((CorsConfigurationSource) source);
     }

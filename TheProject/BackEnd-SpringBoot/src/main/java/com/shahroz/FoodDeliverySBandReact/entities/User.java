@@ -1,10 +1,13 @@
 package com.shahroz.FoodDeliverySBandReact.entities;
 
 import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -12,23 +15,29 @@ import java.util.Set;
 
 @Table(name = "users")
 @Entity
+
+@Builder
+@AllArgsConstructor
+@Setter
+@Getter
+@NoArgsConstructor
+
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long user_id;
+    @Column(unique = true)
     private String email;
     private String password;
 
     private String first_name;
     private String last_name;
     private String address;
-    private Long phone_number;
+    private String phone_number;
 
-    private int isAdmin;
-
-    public User() {
-    }
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     @OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.EAGER,mappedBy = "user")
 
@@ -37,18 +46,6 @@ public class User implements UserDetails {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Reviews> reviews;
 
-    public User(Long user_id, String email, String password, String first_name, String last_name, String address, Long phone_number, int isAdmin, Set<com.shahroz.FoodDeliverySBandReact.entities.orders> orders, List<Reviews> reviews) {
-        this.user_id = user_id;
-        this.email = email;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.address = address;
-        this.phone_number = phone_number;
-        this.isAdmin = isAdmin;
-        this.orders = orders;
-        this.reviews = reviews;
-    }
 
     public Long getUser_id() {
         return user_id;
@@ -68,9 +65,13 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        if (role != null) {
+            return List.of(new SimpleGrantedAuthority(role.name()));
+        } else {
+            // Handle the case where role is null (e.g., provide default authority).
+            return Collections.emptyList(); // or any other appropriate action
+        }
     }
-
     public String getPassword() {
         return password;
     }
@@ -128,21 +129,7 @@ public class User implements UserDetails {
         this.address = address;
     }
 
-    public Long getPhone_number() {
-        return phone_number;
-    }
 
-    public void setPhone_number(Long phone_number) {
-        this.phone_number = phone_number;
-    }
-
-    public int getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(int isAdmin) {
-        this.isAdmin = isAdmin;
-    }
 
     public Set<com.shahroz.FoodDeliverySBandReact.entities.orders> getOrders() {
         return orders;

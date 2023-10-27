@@ -26,6 +26,7 @@ public class FoodItemController {
 
         System.out.println(category_name);
         Long categoryid = categoryService.FindByName(category_name);
+        System.out.println("Id = == = = =" +categoryid) ;
         fooditem.setCategory(categoryService.findById(categoryid));
 
       return ResponseEntity.ok( fooditemService.save(fooditem));

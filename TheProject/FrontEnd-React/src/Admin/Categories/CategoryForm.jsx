@@ -1,5 +1,5 @@
 import React , {useState} from 'react'
-import { jwtToken } from '../../config';
+import {  token } from '../../config';
 
 export const CategoryForm = () => {
  
@@ -10,13 +10,16 @@ export const CategoryForm = () => {
    
     
     const data = {
-      category_name: value,
+      name: value,
     };
 
     fetch('http://localhost:8090/admin/home/Categories/create' , {
       method: 'POST',
       headers: {   
 'Content-Type': 'application/json',
+
+  'Authorization' : `Bearer ${token }` 
+
       },
       body: JSON.stringify(data),
     })

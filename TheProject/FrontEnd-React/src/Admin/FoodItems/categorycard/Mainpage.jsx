@@ -1,6 +1,6 @@
 import React from 'react'
 
-import NavbarAdmin from '../../Navbar';
+import NavbarAdmin from '../../NavbarAdmin';
 import AllCardsOfCategory from './AllCardsOfCategory';
 
 export  function Mainpage  () {

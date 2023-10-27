@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 
 
 import FooditemsAll from './FooditemsAll'
-import NavbarAdmin from '../../Navbar';
+import NavbarAdmin from '../../NavbarAdmin';
 
 
 export const Fooditems = ({category}) => {

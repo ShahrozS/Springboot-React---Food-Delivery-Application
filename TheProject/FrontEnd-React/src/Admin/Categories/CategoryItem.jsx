@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-
+import {  token } from '../../config';
 
 export const CategoryItem = ({index,category}) => {
  console.log(category.name);
  const [refreshKey, setRefreshKey] = useState(0);
 
  const DeleteCategory = e=>{
-  fetch(`http://localhost:8090/admin/home/Categories/${category.category_id}`, {
+  fetch(`http://localhost:8090/admin/home/Categories/${category.id}`, {
       method: 'DELETE',
+      headers:{
+        'Authorization' : `Bearer ${token}` 
+      } 
+      
     }).then((response)=>{
       if(response.ok){
-        console.log(`Category with name: ${category.category_name} id: ${category.category_id}deleted Successfuly`)
+        console.log(`Category with name: ${category.name} id: ${category.id}deleted Successfuly`)
       }else{
-        console.error(`Failed to delete ${category.category_id}`);
+        console.error(`Failed to delete ${category.id}`);
       }
     }).catch((error) =>{
       console.error('Error:' , error);
@@ -29,7 +33,7 @@ export const CategoryItem = ({index,category}) => {
   return (
     <div className='category'>
       
-        <p>{category.category_name}</p>
+        <p>{category.name}</p>
         <div>
             <FontAwesomeIcon onClick={DeleteCategory} className=' hover:cursor-pointer' icon={faTrash}/>
         </div>

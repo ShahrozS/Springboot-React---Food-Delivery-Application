@@ -18,6 +18,7 @@ public class Delivery_Guy {
     @OneToMany(mappedBy = "deliveryGuy")
     private List<delivery> Delivery_id;
 
+
     private Long NoofOrders;
 
     private Long Phonenumber;

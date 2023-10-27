@@ -20,7 +20,7 @@ public class SecurityConfig {
     @Autowired
     private JwtAuthenticationEntryPoint point;
     @Autowired
-    private JwtAuthenticationFilter filter;
+    private JwtAuthenticationFilter  filter;
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -33,12 +33,13 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable())
                 .authorizeRequests().
-                requestMatchers("/api/**").authenticated().requestMatchers("/auth/login").permitAll().requestMatchers("/auth/create-user").permitAll().requestMatchers("/admin/**").permitAll()
+                requestMatchers("/ac").authenticated().requestMatchers("/auth/login").permitAll().requestMatchers("/**").permitAll().requestMatchers("/admin/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and().exceptionHandling(ex -> ex.authenticationEntryPoint(point))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
     @Bean

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 
-import FoodItems, { Food } from './fooditem';
+import  { Food } from './fooditem';
 import { Link } from 'react-router-dom';
+import { token } from '../../../config';
 
 export  function FooditemsAll({category}) {
   
@@ -14,7 +15,9 @@ export  function FooditemsAll({category}) {
     // Fetch categories from the Spring Boot backend
     fetch(`http://localhost:8090/admin/home/FoodItems/${category}/ShowAll` , {
       method: 'GET',
-     
+      headers:{
+        'Authorization' : `Bearer ${token}`
+      } 
     })
       .then((response) => {
         if (response.ok) {

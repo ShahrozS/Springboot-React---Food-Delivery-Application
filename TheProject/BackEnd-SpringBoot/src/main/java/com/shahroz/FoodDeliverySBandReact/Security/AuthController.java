@@ -2,6 +2,7 @@ package com.shahroz.FoodDeliverySBandReact.Security;
 
 import com.shahroz.FoodDeliverySBandReact.Services.UserService;
 import com.shahroz.FoodDeliverySBandReact.entities.User;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
 
@@ -48,7 +50,8 @@ public class AuthController {
 
         JwtResponse response = JwtResponse.builder()
                 .jwtToken(token)
-                .username(userDetails.getUsername()).build();
+                .username(userDetails.getUsername()).build()
+                ;
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
@@ -65,7 +68,7 @@ public class AuthController {
 
     }
 
-
+private final AuthenticationService service;
 
     @ExceptionHandler(BadCredentialsException.class)
     public String exceptionHandler(){
@@ -75,6 +78,25 @@ public class AuthController {
     @PostMapping("/create-user")
     public User createUser(@RequestBody User user){
 return userService.createUser(user);
+    }
+
+
+    @PostMapping("/register")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody RegisterRequest request){
+return ResponseEntity.ok(service.register(request));
 
     }
+
+
+
+    @PostMapping("/authenticate")
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody AuthenticationRequest request){
+        return ResponseEntity.ok(service.authenticate(request));
+
+    }
+
+
+
+
+
 }

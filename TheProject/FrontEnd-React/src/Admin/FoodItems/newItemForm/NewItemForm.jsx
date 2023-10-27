@@ -1,8 +1,8 @@
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import NavbarAdmin from '../../Navbar'
+import NavbarAdmin from '../../NavbarAdmin'
 import { useState } from 'react';
-
+import { token } from '../../../config';
 
 export default function FoodItemForm({category}) {
  
@@ -27,6 +27,9 @@ console.log(data)
       method:'POST',
       headers:{
         'Content-Type':'application/json',
+        
+          'Authorization' : `Bearer ${token}`
+        
       },
       body: JSON.stringify(data),
     }).then((response) =>{

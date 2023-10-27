@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { CategoryItem } from './CategoryItem';
+import { token } from '../../config';
 
 export  function CategoriesAll() {
   
@@ -10,15 +11,19 @@ export  function CategoriesAll() {
   ]);
   
 
+
 // Fetching now
 useEffect(() => {
   // Fetch categories from the Spring Boot backend
   fetch('http://localhost:8090/admin/home/Categories' , {
     method: 'GET',
-   
+  headers:{
+    'Authorization' : `Bearer ${token}`
+  }   
   })
     .then((response) => {
       if (response.ok) {
+        console.log("Token : " +token)
         console.log(response)
         return response.json(); // Assuming the response is JSON data
       } else {
