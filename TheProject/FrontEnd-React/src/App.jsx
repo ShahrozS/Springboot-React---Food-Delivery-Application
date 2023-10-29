@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { token } from './config';
 import MainpageUser from './Customer/New/FoodItems/categorycard/MainpageUser';
 import FooditemsUser from './Customer/New/FoodItems/foodItems/FoodWrapperUser';
+import UserHome from './Customer/New/Home/HomeUser';
 
 
 
@@ -47,7 +48,7 @@ function App() {
         }
       })
       .then((data) => {
-        console.log(data)
+   
         setCards(data); // Update the state with fetched categories
       })
       .catch((error) => {
@@ -97,12 +98,13 @@ function App() {
 
 //Users route
         <Route path="/user/home/FoodItems" element={<MainpageUser/>}/>
-        
+        <Route path='/user/home/FoodItems/:orderid' element={<MainpageUser/>}/>
+        <Route path={`/user/home/:orderid`} element={<UserHome />}/>
   
         {categories.map((category) => (
           <Route
             key={category.name}
-            path={`/user/home/FoodItems/${category.name}/ShowAll`}
+            path={`/user/home/FoodItems/${category.name}/ShowAll/:orderid`}
             element={<FooditemsUser category={category.name} />}
           />
         ))}

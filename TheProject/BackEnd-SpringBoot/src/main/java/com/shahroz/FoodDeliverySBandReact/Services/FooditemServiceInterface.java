@@ -14,5 +14,6 @@ public interface FooditemServiceInterface {
     public void deleteFoodItem(String id);
     public List<fooditem>  FindAllFood();
 
+    public fooditem findByID(Long id);
 
 }

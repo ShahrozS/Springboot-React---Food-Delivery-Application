@@ -3,10 +3,13 @@ import React , {useState} from 'react'
 
 import FooditemsAll, { FooditemsAllUser } from './FooditemsAllUser'
 import NavbarUser from '../../NavbarUser';
+import { useParams } from 'react-router-dom';
 
 
 export const FooditemsUser = ({category}) => {
 
+  const {orderid} = useParams();
+  console.log("food mai" + orderid);
 // const {categories,setTodos}= useState([
 
 // ]);
@@ -18,7 +21,7 @@ export const FooditemsUser = ({category}) => {
       <NavbarUser/>
     <div className='Categories  backdrop-blur-sm '>
     
-    <FooditemsAllUser category={category} />
+    <FooditemsAllUser orderid = {orderid} category={category} />
  
 
     </div>

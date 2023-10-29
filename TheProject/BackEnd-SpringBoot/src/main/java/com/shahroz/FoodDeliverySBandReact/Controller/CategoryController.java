@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("admin/home/Categories")
+@RequestMapping("admin/home")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
 
-@PostMapping("/create")
+@PostMapping("/Categories/create")
 public ResponseEntity<?> createCategory(@RequestBody Category category){
     System.out.println("Workssss");
     System.out.println("Category name: "+category.getName());
@@ -35,18 +35,20 @@ public ResponseEntity<?> createCategory(@RequestBody Category category){
 //    }
 
 
-    @GetMapping
+    @GetMapping("/Categories")
     public List<Category> getAllCategories(){
+
+        System.out.println("Finding categories from Admin");
     return categoryService.getAllCategory();
     }
 
-    @PostMapping
+    @PostMapping("/Categories")
     public Category saveCategory(@RequestBody Category category){
     return categoryService.createCategory(category);
 
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/Categories/{id}")
     public ResponseEntity<String> deleteCategory(@PathVariable String id){
         System.out.println("CHECKINGGGGGGG");
 

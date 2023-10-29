@@ -33,5 +33,10 @@ public class FooditemService implements FooditemServiceInterface {
         return fooditemrepository.findAll();
     }
 
+    @Override
+    public fooditem findByID(Long id) {
+        return fooditemrepository.findById(id).orElse(null);
+    }
+
 
 }

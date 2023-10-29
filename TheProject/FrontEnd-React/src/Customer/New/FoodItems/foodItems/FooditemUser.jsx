@@ -3,18 +3,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { token } from '../../../../config';
 
-export const FoodUser = ({fooditem,category}) => {
+export const FoodUser = ({orderid,fooditem,category}) => {
   const [quantity, setQuantity] = useState(0);
-
+  const[foodid , setFoodid] = useState(fooditem.food_id);
+  const[orderidd , setOrderidd] = useState(orderid);
 
  
   const addItem = e=>{
    
+    console.log(fooditem);
+    console.log(orderid)
     const details = {
 
       food_id :  fooditem.food_id,  
       quantity : quantity,
-      order_id_order_id : ``,
+      order_id_order_id : orderidd,
 
 
 
@@ -22,20 +25,32 @@ export const FoodUser = ({fooditem,category}) => {
     }
 
 
+    if(quantity>0){
 
-    fetch(`http://localhost:8090/user/home/FoodItems/AddOrder` ,{
-       method:'POST',
-    header : {
-      'Content-Type': 'application/json',
-      'Authorization' : `Bearer ${token}`,
+    
+    fetch(`http://localhost:8090/cart/addItem`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(details),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Item added to card");
+        } else {
+          console.log("Failed to add the item");
+        }
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
 
-    },
-    body: JSON.stringify(details),
     }
-   
-    )
-
-
+    else{
+      console.log("ENTER QUANTITY");
+    }
 
 
   };

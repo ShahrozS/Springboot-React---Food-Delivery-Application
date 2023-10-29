@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import GetUser, { getUserByUsername } from "../../../Admin/Util/GettingAUser";
 import { token } from "../../../config";
+import AllCardsOfOptionsUser from "../../New/Home/AllCardsOfOptionsUsers";
 
 export default function Login() {
-   
+  const navigateTo = useNavigate();
+
+  const[order,setOrders] = useState('');
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [userType, setUserType] = useState(1);
@@ -16,9 +19,9 @@ export default function Login() {
 
 
   const handleSubmit = e =>{
-
+    
+ 
 e.preventDefault();
-
 
 const details = {
   email: Email,
@@ -65,7 +68,9 @@ fetch('http://localhost:8090/auth/login', {
     // Log the JSON data
     // Store the token and username in localStorage
     
-   
+   // generating an order for the logged in user
+ if(userType===1){
+
     fetch(`http://localhost:8090/user/home/GenerateOrder` , {
       method : 'POST',
       headers : {
@@ -81,13 +86,32 @@ fetch('http://localhost:8090/auth/login', {
 
       if(response.ok){
         console.log("Order id generated")
+
+        return response.json();
       }
       else{
         console.log("Failure in generating order id")
       }
-    }).catch((error)=>{
+    }).then((data) =>{
+
+      console.log(  "Order data   " + data.order_id ) ;
+     setOrders(data.order_id);
+   
+  
+        navigateTo(`/user/home/${data.order_id}`)
+    
+      
+      })
+    .catch((error)=>{
       console.log(`Errir :` ,error);
     })
+
+//Getting the orderID
+  
+
+
+  }
+
 
     console.log("aftr second fetch");
     
@@ -105,8 +129,9 @@ getUserByUsername(data.username)
             console.error('Error fetching user:', error);
           });
 
-
-
+          if(userType ===0){
+            navigateTo('/admin/home');
+          }
   })
   .catch((error) => {
     setMessage(' ' + error)

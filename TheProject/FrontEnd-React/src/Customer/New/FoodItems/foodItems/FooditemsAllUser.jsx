@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import FoodUser from './FooditemUser';
 import { token } from '../../../../config';
 
-export  function FooditemsAllUser({category}) {
+export  function FooditemsAllUser({orderid,category}) {
   
 
   //isme db se samaaan ayega  
@@ -50,7 +50,7 @@ export  function FooditemsAllUser({category}) {
 {
   
   fooditems.length > 0 ? fooditems.map(item=>(
-    <FoodUser   fooditem={item} category={category} />
+    <FoodUser  orderid = {orderid} fooditem={item} category={category} />
       )):"No Items"
 }
 

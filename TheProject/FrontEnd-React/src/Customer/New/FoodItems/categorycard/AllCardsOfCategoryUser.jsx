@@ -6,25 +6,27 @@ import CardsOfCategoryUser from './CardsOfCategoryUser';
 import { token } from '../../../../config';
 
 
-export  function AllCardsOfCategoryUser() {
+export  function AllCardsOfCategoryUser({orderid}) {
   
 
   //isme db se samaaan ayega  
-  const[cards , setCards] = useState([
+  const[usercards , setCards] = useState([
     
   ]);
 
   useEffect(() => {
     // Fetch categories from the Spring Boot backend
-    fetch('http://localhost:8090/user/home/Categories' , {
+    fetch('http://localhost:8090/admin/home/Categories' , {
       method: 'GET',
     headers:{
+      
       'Authorization' : `Bearer ${token}`
+
     }   
     })
       .then((response) => {
         if (response.ok) {
-          console.log("Token : " + token)
+          console.log("Token of user : " + token)
           console.log(response)
           return response.json(); // Assuming the response is JSON data
         } else {
@@ -44,8 +46,8 @@ export  function AllCardsOfCategoryUser() {
     return ( 
         <div className="grid grid-cols-3 gap-4 p-4">
 {
-  cards.length > 0 ? cards.map(item=>(
-    <Link to={`/user/home/FoodItems/${item.name}/ShowAll`}>
+  usercards.length > 0 ? usercards.map(item=>(
+    <Link to={`/user/home/FoodItems/${item.name}/ShowAll/${orderid}`}>
     <CardsOfCategoryUser  categoryname={item} />
     </Link>
       

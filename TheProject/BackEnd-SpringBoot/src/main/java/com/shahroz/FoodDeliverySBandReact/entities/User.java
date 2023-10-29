@@ -1,5 +1,6 @@
 package com.shahroz.FoodDeliverySBandReact.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -37,13 +38,15 @@ public class User implements UserDetails {
     private String phone_number;
 
     @Enumerated(EnumType.STRING)
+    @JsonIgnore
     private Role role;
 
     @OneToMany(cascade = CascadeType.ALL ,fetch = FetchType.EAGER,mappedBy = "user")
-
+    @JsonIgnore
     private Set<orders> orders;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Reviews> reviews;
 
 

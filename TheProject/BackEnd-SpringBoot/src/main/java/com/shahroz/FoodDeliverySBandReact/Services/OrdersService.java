@@ -17,5 +17,10 @@ public class OrdersService implements ordersServiceInterface {
         return orderrepository.save(order);
     }
 
+    @Override
+    public orders findById(Long id) {
+        return orderrepository.findById(id).orElse(null);
+    }
+
 
 }

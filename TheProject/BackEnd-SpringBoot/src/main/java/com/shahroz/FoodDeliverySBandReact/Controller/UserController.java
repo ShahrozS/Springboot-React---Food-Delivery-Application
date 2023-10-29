@@ -9,6 +9,8 @@ import com.shahroz.FoodDeliverySBandReact.entities.User;
 import com.shahroz.FoodDeliverySBandReact.entities.fooditem;
 import com.shahroz.FoodDeliverySBandReact.entities.orders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -61,30 +63,33 @@ public class UserController {
 
 
     // Generating all the cateogures
-    @GetMapping("/home/Categories")
-    public List<Category> getAllCategories(Principal principal){
+    @GetMapping("/home/CategoriesUser")
+    public List<Category> getAllCategories(){
+        System.out.println("Finding categories from User");
         return categoryService.getAllCategory();
     }
 
 
 // Generating an order id as soon as user logs in:
     @PostMapping("/home/GenerateOrder")
-    public orders createOrder(Principal principal){
-
+    public ResponseEntity<orders> createOrder(Principal principal){
         orders neworder = new orders();
         neworder.setUser(userService.findByEmail(principal.getName()));
         neworder.setStatus("Pending");
         neworder.setDatetime(new Date());
-if(neworder == null){
-    System.out.println("Error in creating a new order");
-}
-else {
-    System.out.println("Creating order for  " + principal.getName());
-}
 
+        // Attempt to create the order
+        orders createdOrder = ordersService.createOrder(neworder);
 
-        return  ordersService.createOrder(neworder);
-
+        if (createdOrder != null) {
+            // Order was successfully created
+            System.out.println("Creating order for " + principal.getName());
+            return ResponseEntity.ok(createdOrder);
+        } else {
+            // Handle the case where order creation failed
+            System.out.println("Error in creating a new order");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 
