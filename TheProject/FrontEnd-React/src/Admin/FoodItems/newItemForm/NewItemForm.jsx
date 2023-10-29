@@ -12,6 +12,7 @@ export default function FoodItemForm({category}) {
   const [price, setPrice] = useState(0); // Initialize with the desired default value
   const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState('');
+  const [message,setMessage] = useState('');
 
   const handleSubmit = e =>{
 e.preventDefault();
@@ -34,6 +35,7 @@ console.log(data)
       body: JSON.stringify(data),
     }).then((response) =>{
       if(response.ok){
+        setMessage('Food Item Added!')
         console.log('Added food item successfully');
       }
       else{
@@ -45,6 +47,11 @@ console.log(data)
 
 
 
+    setFoodname('');
+    setPrice('');
+    setDescription('');
+    setIngredients('');
+  
 
   }
  
@@ -97,7 +104,7 @@ console.log(data)
           />
 
         <button type='submit ' className='text-white bg-lightdark p-3 text-md font-semibold mb-4 rounded-lg' >Add Item</button>
-
+        <p className='text-red text-xl font-semibold text-center' >{message}</p>
         </form>
 
 

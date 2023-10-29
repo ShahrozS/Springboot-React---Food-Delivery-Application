@@ -130,3 +130,30 @@ padding: 7px;
 
 
  }
+
+ /* user food item styling */
+
+ .category2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background:#31a05f;
+  font-weight: 200;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+  width:300px;
+
+  text-align: center;
+  align-self: center;
+margin: 0 auto;
+margin-bottom: 1rem; 
+
+}
+
+.fooditem{
+   width: 800px;
+
+  }
