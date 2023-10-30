@@ -5,21 +5,17 @@ import com.shahroz.FoodDeliverySBandReact.Services.FooditemService;
 import com.shahroz.FoodDeliverySBandReact.Services.Order_DetailService;
 import com.shahroz.FoodDeliverySBandReact.Services.OrdersService;
 import com.shahroz.FoodDeliverySBandReact.entities.order_details;
-import com.shahroz.FoodDeliverySBandReact.entities.orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
-@Controller
-@RequestMapping("/cart")
-public class order_detailsController {
+@RestController
+@RequestMapping("cart")
+public class OrderdetailsController {
 
  @Autowired
     Order_DetailService orderDetailService;
@@ -56,7 +52,7 @@ public class order_detailsController {
 
        order_details order_details = new order_details();
        order_details.setFoodItem(fooditemService.findByID(Long.parseLong(String.valueOf(food_id))));
-       order_details.setOrder_id(ordersService.findById(Long.parseLong(String.valueOf(orderid))));
+       order_details.setOrderId(ordersService.findById(Long.parseLong(String.valueOf(orderid))));
        order_details.setQuantity(quantity);
         order_details createdOrder = orderDetailService.saveOrderDetail(order_details);
 
@@ -72,6 +68,35 @@ public class order_detailsController {
 
 
 
+    }
+
+    @GetMapping("/getFoodItem/{orderid}")
+    public List<order_details> getFoodItems(@PathVariable String orderid){
+        System.out.println("Wokring in brniging ordered items to cart");
+
+        Long order_id = Long.valueOf(orderid);
+        System.out.println(order_id);
+
+        return orderDetailService.findByOrderId(ordersService.findById(order_id));
+
+
+
+    }
+
+
+    @DeleteMapping("/getFoodItem/delete/{id}")
+    public ResponseEntity<?> deleteFoodItem(@PathVariable String id){
+        Long slip = Long.valueOf(id);
+        System.out.println("Deleting a slip");
+
+        try {
+
+            orderDetailService.deleteById(slip);
+            return ResponseEntity.ok("Slip with ID " + slip + " deleted successfully");
+        } catch (NumberFormatException e) {
+            System.out.println(e + id);
+            return ResponseEntity.badRequest().body("Invalid ID: " + id);
+        }
     }
 
 }

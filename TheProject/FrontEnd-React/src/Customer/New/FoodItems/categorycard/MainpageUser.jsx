@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { AllCardsOfCategoryUser } from './AllCardsOfCategoryUser';
-import NavbarUser from '../../NavbarUser';
+import NavbarUser from '../../navbar/NavbarUser';
 import { useParams } from 'react-router-dom';
 
 export  function MainpageUser  () {

@@ -97,7 +97,7 @@ fetch('http://localhost:8090/auth/login', {
       console.log(  "Order data   " + data.order_id ) ;
      setOrders(data.order_id);
    
-  
+        localStorage.setItem('orderid',data.order_id);
         navigateTo(`/user/home/${data.order_id}`)
     
       

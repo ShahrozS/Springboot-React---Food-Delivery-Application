@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 
 
 import FooditemsAll, { FooditemsAllUser } from './FooditemsAllUser'
-import NavbarUser from '../../NavbarUser';
+import NavbarUser from '../../navbar/NavbarUser';
 import { useParams } from 'react-router-dom';
 
 

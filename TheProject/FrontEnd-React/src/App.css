@@ -157,3 +157,10 @@ margin-bottom: 1rem;
    width: 800px;
 
   }
+
+
+/* 
+dropdown menu for cart */
+.transition {
+  transition: all 0.3s ease-in-out; /* You can adjust the duration and timing function */
+}
