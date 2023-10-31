@@ -15,6 +15,7 @@ import { token } from './config';
 import MainpageUser from './Customer/New/FoodItems/categorycard/MainpageUser';
 import FooditemsUser from './Customer/New/FoodItems/foodItems/FoodWrapperUser';
 import UserHome from './Customer/New/Home/HomeUser';
+import Checkout from './Customer/New/Checkout/Checkout';
 
 
 
@@ -110,7 +111,7 @@ function App() {
         ))}
          
 
-
+          <Route path="/user/home/checkout" element={<Checkout/>}/>
         
         </Routes> 
     </Router>

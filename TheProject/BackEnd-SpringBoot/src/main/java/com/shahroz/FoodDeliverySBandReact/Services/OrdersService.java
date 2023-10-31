@@ -22,5 +22,6 @@ public class OrdersService implements ordersServiceInterface {
         return orderrepository.findById(id).orElse(null);
     }
 
+//    public void updateTotal(double)
 
 }

@@ -20,12 +20,6 @@ public class payment {
 
 
 
-
-
-
-    @OneToOne
-    @JoinColumn(name = "order_id") // This is the foreign key column
-    private orders order;
     private double amount;
 
     private String Mode;

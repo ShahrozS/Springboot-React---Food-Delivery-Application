@@ -52,7 +52,7 @@ fetch('http://localhost:8090/auth/login', {
       // function in spring, which will take the username, generate uski id, make a new order row, add username usme. which will be empty.
 
       const userdetails = {
-          //username
+          user
       } 
   //       fetch('http://localhost:8090/home/user/${data.username}/createordercol' , {
   //         method:'POST',
@@ -225,7 +225,7 @@ getUserByUsername(data.username)
             name="userType"
             value={0}
             required
-       checked={userType === 0}
+            checked={userType === 0}
             onChange={() => handleUserTypeChange(0)}
           />
     Admin 

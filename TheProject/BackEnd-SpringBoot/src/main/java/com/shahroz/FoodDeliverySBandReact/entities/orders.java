@@ -31,6 +31,12 @@ private User user;
 
 private String status;
 
+@OneToOne
+
+@JoinColumn(name = "payment_id") // This is the foreign key column
+
+private payment payment;
+
 
 
 

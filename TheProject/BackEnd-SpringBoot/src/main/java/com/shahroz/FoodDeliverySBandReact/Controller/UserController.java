@@ -39,8 +39,11 @@ public class UserController {
     }
 
     @PostMapping("/current-user")
-    public String getLoggedInUser(Principal principal){
-        return principal.getName();
+    public User getLoggedInUser(Principal principal){
+
+        System.out.println("Returning the user");
+
+        return userService.findByEmail(principal.getName());
     }
 
     // this will find the user by his username
