@@ -44,7 +44,7 @@ export  function AllCardsOfCategoryUser({orderid}) {
 
   
     return ( 
-        <div className="grid grid-cols-3 gap-4 p-4">
+        <div className="grid grid-cols-3 gap-4 p-4">  
 {
   usercards.length > 0 ? usercards.map(item=>(
     <Link to={`/user/home/FoodItems/${item.name}/ShowAll/${orderid}`}>

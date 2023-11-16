@@ -9,6 +9,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -36,7 +37,7 @@ public class OrderController {
 //    }
 
 
-    @PutMapping("/{orderid}")
+    @PutMapping("/updatePayment/{orderid}")
     public ResponseEntity<orders> UpdatePayment(@PathVariable String orderid, @RequestBody payment payment) {
         Long order_id = Long.valueOf(orderid);
 
@@ -44,6 +45,7 @@ public class OrderController {
 
         if (order != null) {
             order.setPayment(payment);
+            order.setStatus("In Progress");
             ordersService.createOrder(order);
             return ResponseEntity.ok(order);
         } else {
@@ -51,4 +53,12 @@ public class OrderController {
         }
 
     }
+
+    @GetMapping("/{orderid}")
+public orders getOrderByID(@PathVariable String orderid){
+        Long order_id = Long.valueOf(orderid);
+
+        return ordersService.findById(order_id);
+    }
+
 }

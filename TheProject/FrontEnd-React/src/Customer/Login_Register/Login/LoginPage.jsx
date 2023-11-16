@@ -52,7 +52,7 @@ fetch('http://localhost:8090/auth/login', {
       // function in spring, which will take the username, generate uski id, make a new order row, add username usme. which will be empty.
 
       const userdetails = {
-          user
+       
       } 
   //       fetch('http://localhost:8090/home/user/${data.username}/createordercol' , {
   //         method:'POST',
@@ -97,6 +97,7 @@ fetch('http://localhost:8090/auth/login', {
       console.log(  "Order data   " + data.order_id ) ;
      setOrders(data.order_id);
    
+     console.log("Saving this order id in storage: " + data.order_id);
         localStorage.setItem('orderid',data.order_id);
         navigateTo(`/user/home/${data.order_id}`)
     

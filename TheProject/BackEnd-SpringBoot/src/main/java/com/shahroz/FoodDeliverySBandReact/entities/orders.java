@@ -24,7 +24,7 @@ private Long order_id;
 private Date datetime;
 
 
-@ManyToOne(fetch = FetchType.EAGER)
+@ManyToOne()
 private User user;
 
 

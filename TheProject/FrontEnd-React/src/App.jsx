@@ -16,6 +16,12 @@ import MainpageUser from './Customer/New/FoodItems/categorycard/MainpageUser';
 import FooditemsUser from './Customer/New/FoodItems/foodItems/FoodWrapperUser';
 import UserHome from './Customer/New/Home/HomeUser';
 import Checkout from './Customer/New/Checkout/Checkout';
+import Orders from './Admin/AllOrders/Order';
+import PlacedOrder from './Customer/New/Checkout/Placedorder';
+import Dispatch from './Admin/AllOrders/Dispatch/Dispatch';
+import DeliveryGuyForm from './Admin/DeliveryGuys/DeliveryGuysForm';
+import DeliveryBoysAll from './Admin/DeliveryGuys/DeliveryguysAll';
+import Deliveryguys from './Admin/DeliveryGuys/Deliveryguys';
 
 
 
@@ -29,6 +35,9 @@ function App() {
 
   const[categories , setCards] = useState([
     
+  ]);
+  const[orders,setOrders] =useState([
+
   ]);
   
   useEffect(() => {
@@ -58,7 +67,31 @@ function App() {
   }, []);
   
 
-
+  useEffect(() => {
+    // Fetch categories from the Spring Boot backend
+    fetch('http://localhost:8090/admin/home/AllOrders' , {
+      method: 'GET',
+    headers:{
+      'Authorization' : `Bearer ${token}`
+    }   
+    })
+      .then((response) => {
+        if (response.ok) {
+        
+          return response.json(); // Assuming the response is JSON data
+        } else {
+          throw new Error('Failed to fetch Orders.');
+        }
+      })
+      .then((data) => {
+        console.log("orders" +data)
+        setOrders(data); // Update the state with fetched categories
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }, []);
+  
 
 
   return (
@@ -69,15 +102,28 @@ function App() {
 
      <Routes>
         //Admin Routes 
-        <Route path="/" element={<HomePage/>} />
+        <Route path="/" element={<Login/>} />
         <Route path="/auth/signup" element={<SignUp/>} />
         <Route path="/admin/home/categories"element ={<Categories/>}/>
         <Route path="/admin/home/FoodItems" element={<Mainpage/>}/>
         <Route path="/admin/home"element={<AdminHome/>}/>
         <Route path="/auth/login" element={<Login/>}/>
+        <Route path="/admin/home/AllOrders" element={<Orders/>}/>
+      
+
+        //dispatching orders
+        {orders.map((order) => (
+          <Route
+            key={order.order_id}
+            path={`/admin/home/dispatch/${order.order_id}`}
+            element={<Dispatch orderid = {order.order_id}/>}
+          />
+        ))}
         
-     
-        
+        //Delivery Guy
+          <Route path="/admin/DeliveryGuy/addNewDeliveryGuy" element={<DeliveryGuyForm/>}/>
+          <Route path="/admin/DeliveryGuy" element={<Deliveryguys/>}/>
+
         // Food Item According categories routse:
         
         {categories.map((category) => (
@@ -112,7 +158,7 @@ function App() {
          
 
           <Route path="/user/home/checkout" element={<Checkout/>}/>
-        
+          <Route path="/user/home/checkout/placedorder" element={<PlacedOrder/>}/>
         </Routes> 
     </Router>
 

@@ -62,6 +62,7 @@ fetch('http://localhost:8090/auth/create-user', {
 }).then((response) =>{
   if(response.ok){
     console.log('User Created');
+    setMessage("User Registered - Go back to login page.")
   }
   else{
     console.error('User Not created');
