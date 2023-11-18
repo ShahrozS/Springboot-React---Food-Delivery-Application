@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { token } from '../../../config';
+import { deliveryid, token } from '../../../config';
+import { useNavigate } from 'react-router-dom';
 
     
 
@@ -9,91 +10,137 @@ export const DispatchingDeliveryBoyItem = ({orderid,DeliveryGuy}) => {
   console.log(DeliveryGuy.name + "asdds");
   console.log("Order id - " +  orderid)
     const[order,setOrder] = useState('');
-
-const[deliveryguy,setDeliveryGuy] = useState('');
-
-
+    const navigateTo = useNavigate();
+const[deliveryguy,setDeliveryGuy] = useState(DeliveryGuy);
 
 
-    const HandleButton = (e) => {
-      e.preventDefault()
-        // fetching items in card
-fetch(`http://localhost:8090/order/${orderid}` , {
-  method:"GET",
-      headers:{
-          'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const orderResponse = await fetch(`http://localhost:8090/order/${orderid}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
-      },
-  }).then((response)=>{
-      if(response.ok){
-          return response.json();
-         
-  
-      }
-      else{
-          console.log("Failed to catch item");
-      }
-  }).then((data)=>{
-  
-  setOrder(data);
-  
-        })
-  .catch((error)=>{
-      console.log("Errors : " , error);
-  })
-
-console.log("order : " ,order)
-
-      const currTime = new Date();
-currTime.setMinutes(currTime.getMinutes() + 50);
-
-const EndTime = currTime;
-     
-const start = new Date();
-setDeliveryGuy(DeliveryGuy);
-
-      const data ={
-
-        end_time: EndTime,
-        start_time:start,
-        order_id:order,
-        deliveryGuy:deliveryguy
-
-
-      }
-
-      console.log("delivery gyy:  " ,deliveryguy)
-      console.log("data :" ,data)
-
-
-      fetch(`http://localhost:8090/DeliveryBoys/delivery` ,{
-        method:'POST',
-        headers:{
-          'Content-Type':'application/json',
-          
-            'Authorization' : `Bearer ${token}`
-          
         },
-        body: JSON.stringify(data),
-      }).then((response) =>{
-        if(response.ok){
-          return response.json();
-       
-        }
-        else{
-          console.error('Failed to make Delivery');
-        }
-      }).then((data) => {
-        console.log(data); 
-        localStorage.setItem('deliveryid',data.delivery_id);
+      });
+    
+      if (orderResponse.ok) {console.log("Worked 1")
+        const orderData = await orderResponse.json();
+        setOrder(orderData);
+        console.log('Order is here', orderData);
+        console.log('order is saved' , order);
+      } else {
+        console.log('Failed to fetch  order');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+ 
+  fetchData();
+}, []);
 
 
-        // Log the response data
-      }).catch((error)=>{
-        console.error('Error:',error);
-      })
-  
+
+
+
+
+
+const HandleButton = async (e) => {
+  e.preventDefault();
+
+  try {
+
+ 
+
+    const currTime = new Date();
+    currTime.setMinutes(currTime.getMinutes() + 50);
+
+    const EndTime = currTime;
+
+    const start = new Date();
+
+console.log("Order after button " , order);
+    const data = {
+      end_time: EndTime,
+      start_time: start,
+      orderid: order,
+      deliveryGuy: deliveryguy,
     };
+
+    console.log('delivery guy: ', deliveryguy);
+    console.log('data:', data);
+
+    // Make a POST request
+    const deliveryResponse = await fetch('http://localhost:8090/DeliveryBoys/delivery', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (deliveryResponse.ok) {
+      console.log("Worked 2")
+      const deliveryData = await deliveryResponse.json();
+      console.log('Clicked assign', deliveryData);
+      console.log("Going into local storage-> " ,  deliveryData.delivery_id);
+      localStorage.setItem('deliveryid', deliveryData.delivery_id);
+      const updatedDeliveryId = localStorage.getItem('deliveryid');
+console.log("Local storage:  " +  updatedDeliveryId);
+    navigateTo('/admin/dispatch')
+    } else {
+      console.error('Failed to make Delivery');
+    }
+
+     //to check the error in fetch in detail
+ if (deliveryResponse.ok) {
+  console.log('Order has been updated successfully');
+} else {
+  console.error('Failed to update order. Response:', deliveryResponse);
+
+  try {
+    const errorData = await deliveryResponse.json();
+    console.error('Error details:', errorData);
+  } catch (error) {
+    console.error('Error parsing error details:', error);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+    // Update order status
+console.log(orderid  + "Is going to get updated")
+  const updateOrder =   await fetch(`http://localhost:8090/order/updateStatus/${orderid}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+ if(updateOrder.ok){
+  console.log("Worked 3")
+ }else{
+  console.log("Couldnt update order");
+ }
+
+
+ 
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
 
 
     return (

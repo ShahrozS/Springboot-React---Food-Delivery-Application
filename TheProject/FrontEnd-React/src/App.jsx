@@ -22,6 +22,7 @@ import Dispatch from './Admin/AllOrders/Dispatch/Dispatch';
 import DeliveryGuyForm from './Admin/DeliveryGuys/DeliveryGuysForm';
 import DeliveryBoysAll from './Admin/DeliveryGuys/DeliveryguysAll';
 import Deliveryguys from './Admin/DeliveryGuys/Deliveryguys';
+import { DispatchedPage } from './Admin/AllOrders/Dispatch/DispatchedPage';
 
 
 
@@ -119,7 +120,8 @@ function App() {
             element={<Dispatch orderid = {order.order_id}/>}
           />
         ))}
-        
+        <Route path="/admin/dispatch" element={<DispatchedPage/>}/>
+
         //Delivery Guy
           <Route path="/admin/DeliveryGuy/addNewDeliveryGuy" element={<DeliveryGuyForm/>}/>
           <Route path="/admin/DeliveryGuy" element={<Deliveryguys/>}/>

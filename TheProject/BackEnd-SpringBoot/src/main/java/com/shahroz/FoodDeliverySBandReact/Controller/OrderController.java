@@ -54,6 +54,22 @@ public class OrderController {
 
     }
 
+    @PutMapping("/updateStatus/{orderid}")
+    public ResponseEntity<orders> UpdateStatus(@PathVariable String orderid) {
+        Long order_id = Long.valueOf(orderid);
+
+        orders order = ordersService.findById(order_id);
+        System.out.println("Updating order status");
+        if (order != null) {
+            order.setStatus("Dispatched");
+            ordersService.createOrder(order);
+            return ResponseEntity.ok(order);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+
+    }
+
     @GetMapping("/{orderid}")
 public orders getOrderByID(@PathVariable String orderid){
         Long order_id = Long.valueOf(orderid);

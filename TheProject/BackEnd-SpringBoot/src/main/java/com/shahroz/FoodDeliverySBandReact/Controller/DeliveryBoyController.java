@@ -2,8 +2,10 @@ package com.shahroz.FoodDeliverySBandReact.Controller;
 
 import com.shahroz.FoodDeliverySBandReact.Services.DeliveryGuyService;
 import com.shahroz.FoodDeliverySBandReact.Services.DeliveryService;
+import com.shahroz.FoodDeliverySBandReact.Services.OrdersService;
 import com.shahroz.FoodDeliverySBandReact.entities.Delivery_Guy;
 import com.shahroz.FoodDeliverySBandReact.entities.Delivery;
+import com.shahroz.FoodDeliverySBandReact.entities.orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -67,7 +69,40 @@ public class DeliveryBoyController {
         @PostMapping("/delivery")
     public Delivery saveDelivery(@RequestBody Delivery delivery){
             System.out.println("In delivery making");
+
+            System.out.println("Order id:  " + delivery.getOrderid());
         return deliveryService.saveDelivery(delivery);
     }
 
+    @GetMapping("/delivery/{id}")
+    public Optional<Delivery> findDeliveryById(@PathVariable String id){
+        System.out.println("Fidning delivery by id");
+
+        try {
+
+            long DeliveryId = Long.parseLong(id);
+
+            return deliveryService.findById(DeliveryId);
+        } catch (NumberFormatException e) {
+            System.out.println(e + id);
+            return null;
+        }
+    }
+
+    @Autowired
+    OrdersService ordersService;
+
+        @GetMapping("/deliverybyorder/{orderid}")
+    public Delivery findDeliveryByOrderid(@PathVariable String orderid){
+        try {
+
+            long order_id = Long.parseLong(orderid);
+
+            orders order = ordersService.findById(order_id);
+            return deliveryService.findByOrderid(order);
+        } catch (NumberFormatException e) {
+            System.out.println(e + orderid);
+            return null;
+        }
+    }
 }

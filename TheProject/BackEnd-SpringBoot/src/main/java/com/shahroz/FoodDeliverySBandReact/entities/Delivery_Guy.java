@@ -21,7 +21,7 @@ public class Delivery_Guy {
         private Long Delivery_Guy_id;
     private String name;
     private String vehicle;
-
+    private String vehicleNumber;
 
 private String status;
 

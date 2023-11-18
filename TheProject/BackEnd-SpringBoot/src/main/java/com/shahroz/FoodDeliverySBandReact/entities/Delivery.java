@@ -35,8 +35,8 @@ public class Delivery {
 
 
     @OneToOne
-    @JoinColumn(name = "order_id" , unique = false)
-    private orders order_id;
+    @JoinColumn(name = "order_id" , unique = true)
+    private orders orderid;
 
 
 
