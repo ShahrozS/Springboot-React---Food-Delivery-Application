@@ -16,10 +16,18 @@ export default function Login() {
     setUserType(value);
   };
 
+//setting local storage items to null
 
+localStorage.setItem('token' , '');
+localStorage.setItem('username' , '');
+
+localStorage.setItem('deliveryid' , '');
+localStorage.setItem('orderid' , '');
 
   const handleSubmit = e =>{
     
+
+
  
 e.preventDefault();
 
@@ -69,43 +77,13 @@ fetch('http://localhost:8090/auth/login', {
     // Store the token and username in localStorage
     
    // generating an order for the logged in user
- if(userType===1){
 
-    fetch(`http://localhost:8090/user/home/GenerateOrder` , {
-      method : 'POST',
-      headers : {
-        'Content-Type': 'application/json',
-        'Authorization' : `Bearer ${token}`,
-
-      },
-      
-      
-
-    }).then((response)=>{
-      console.log("in the second fetch");
-
-      if(response.ok){
-        console.log("Order id generated")
-
-        return response.json();
-      }
-      else{
-        console.log("Failure in generating order id")
-      }
-    }).then((data) =>{
-
-      console.log(  "Order data   " + data.order_id ) ;
-     setOrders(data.order_id);
-   
-     console.log("Saving this order id in storage: " + data.order_id);
-        localStorage.setItem('orderid',data.order_id);
-        navigateTo(`/user/home/${data.order_id}`)
     
-      
-      })
-    .catch((error)=>{
-      console.log(`Errir :` ,error);
-    })
+    localStorage.setItem('jwtToken', data.jwtToken);
+    localStorage.setItem('username', data.username);
+     if(userType===1){
+
+  navigateTo(`/user/home`);
 
 //Getting the orderID
   
@@ -114,10 +92,7 @@ fetch('http://localhost:8090/auth/login', {
   }
 
 
-    console.log("aftr second fetch");
-    
-    localStorage.setItem('jwtToken', data.jwtToken);
-    localStorage.setItem('username', data.username);
+
 
 console.log("console log" + data.username)
 

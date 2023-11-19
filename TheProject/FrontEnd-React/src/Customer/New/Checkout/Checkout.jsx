@@ -392,7 +392,7 @@ amount:(total+100),
           <p className="font-semibold text-gray-900">Rs. {total}</p>
         </div>
         <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-gray-900">Shipping</p>
+          <p className="text-sm font-medium text-gray-900">Delivery Charges</p>
           <p className="font-semibold text-gray-900">Rs. 100.00</p>
         </div>
       </div>

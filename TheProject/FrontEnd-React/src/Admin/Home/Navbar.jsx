@@ -19,7 +19,7 @@ export default function Navigation() {
                   
 
               
-             <Link to="/signup">
+             <Link to="/auth/Login">
                 <button href="SignUp.js" className=" bg-red text-white font-semibold px-2 text-2xl py-1 rounded-lg ml-2">Log out</button>
                 </Link>
                 </div>

@@ -13,6 +13,7 @@ export default function DeliveryGuyForm({category}) {
   const [vehicle, setVehicle] = useState(''); // Initialize with the desired default value
   const [Phone,setPhone] = useState('');
   const [message,setMessage] = useState('');
+  const [vehicleNumber,setVehicleNumber] = useState('');
 
   const handleSubmit = e =>{
 e.preventDefault();
@@ -21,6 +22,7 @@ e.preventDefault();
       vehicle : vehicle,
       status : "Available",
       Phonenumber : Phone,
+      vehicleNumber:vehicleNumber,
     };
 
 console.log(data)
@@ -50,6 +52,7 @@ console.log(data)
     setName('');
     setVehicle('');
     setPhone('');
+    setVehicleNumber('');
     
   
 
@@ -90,7 +93,14 @@ console.log(data)
             onChange={(e) => setVehicle(e.target.value)}
             className='FormTextFeild'
           />
-        
+         <label>Vehicle Number</label>
+          <input
+            type='text'
+            placeholder='XXX-000'
+            value={vehicleNumber}
+            onChange={(e) => setVehicleNumber(e.target.value)}
+            className='FormTextFeild'
+          />
 
         <button type='submit ' className='text-white bg-lightdark p-3 text-md font-semibold mb-4 rounded-lg' >Add Item</button>
         <p className='text-red text-xl font-semibold text-center' >{message}</p>

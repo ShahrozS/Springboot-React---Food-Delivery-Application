@@ -1,7 +1,22 @@
+import { useEffect } from "react";
 import NavbarAdmin from "../../NavbarAdmin";
 import DispatchingDeliveryBoysAll from "./DispatchingDeliveryboys";
 
 export const Dispatch = ({orderid}) => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 return(
 
