@@ -2,14 +2,19 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-import { orderid } from '../../../config'
+
 import Cart from './Cart'
+
+// const orderid = localStorage.getItem('orderid');
+
+
+
 
 
 
 const navigation = [
-  { name: 'Home', Link:`/user/home/${orderid}`, href: '#', current: true },
-  { name: 'Order  Food',Link:`/user/home/FoodItems/${orderid}`, href: '#', current: false },
+  { name: 'Home', Link:`/user/home`, href: '#', current: true },
+  { name: 'Order  Food',Link:`/user/home/FoodItems`, href: '#', current: false },
   { name: 'Order History', Link:'/admin/home/FoodItems',href: '#', current: false },
   { name: 'Manage Account',Link:'/admin/home/Users', href: '#', current: false },
   { name: `Order Status `,Link:'/admin/home/Orders', href: '#', current: false },
@@ -20,7 +25,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NavbarUser() {
+export default function NavbarUser({}) {
+const orderid = localStorage.getItem('orderid');
+
   const closeCart = () => {
     setOpenCart(false);
   };
@@ -36,7 +43,8 @@ const closeMyJSX = () => {
   setOpenCart(false);
 };
 
-  console.log(orderid);
+
+  console.log(orderid + " In the nav bar.");
 
   return (
     
@@ -82,13 +90,14 @@ const closeMyJSX = () => {
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 <button
                   type="button" onClick={openCartDialog}
-                  className="relative rounded-full bg-white p-1  font-semibold text-3xl text-black hover:text-primary focus:outline-none focus:ring-2 focus:ring-offset-2 "
+                  className="relative rounded-full bg-white p-1  h-14  w-14  font-semibold text-3xl text-black hover:text-primary focus:outline-none focus:ring-2 focus:ring-offset-2 "
                 >
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View cart</span>
-                  <ShoppingCartIcon   className="h-6 w-6 k" aria-hidden="true" />
+                  <ShoppingCartIcon   className="h-8 w-8 " aria-hidden="true" />
+                  <span className='absolute top-0 right-0 left-7 bg-red-500 text-white w-7 h-7 flex items-center justify-center rounded-full  text-base'> {}</span>
                 </button>
-                {openCart && <Cart  closeCallback={closeMyJSX}/>}
+                {openCart && <Cart orderid = {orderid}  closeCallback={closeMyJSX}/>}
               
                 {/* Profile dropdown */}
                

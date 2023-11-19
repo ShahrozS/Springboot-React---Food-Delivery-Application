@@ -146,9 +146,9 @@ function App() {
 
 
 //Users route
-        <Route path="/user/home/FoodItems" element={<MainpageUser/>}/>
-        <Route path='/user/home/FoodItems/:orderid' element={<MainpageUser/>}/>
-        <Route path={`/user/home/:orderid`} element={<UserHome />}/>
+      
+        <Route path='/user/home/FoodItems' element={<MainpageUser/>}/>
+        <Route path={`/user/home`} element={<UserHome />}/>
   
         {categories.map((category) => (
           <Route

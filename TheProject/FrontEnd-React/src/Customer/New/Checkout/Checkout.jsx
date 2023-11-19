@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { orderid, token } from "../../../config";
+import {  token } from "../../../config";
 import { Link } from "react-router-dom";
 
 
 export const Checkout = () => {
 
+  const orderid = localStorage.getItem('orderid');
 
+  console.log(orderid   + " in the check out page." );
     
     const [total,setTotal] = useState(0);
 const [open, setOpen] = useState(true);
@@ -44,7 +46,7 @@ const handleCheckboxChange = (event) => {
 
 
 useEffect(()=>{ 
-    console.log(orderid);
+ 
 
     // fetching items in card
 fetch(`http://localhost:8090/cart/getFoodItem/${orderid}` , {

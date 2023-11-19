@@ -11,9 +11,11 @@ export  function OrdersAll() {
   ]);
   
 
-
+let count = 0 ; 
 // Fetching now
 useEffect(() => {
+  console.log("Ran " + count)
+  count++; 
   // Fetch categories from the Spring Boot backend
   fetch('http://localhost:8090/admin/home/AllOrders' , {
     method: 'GET',

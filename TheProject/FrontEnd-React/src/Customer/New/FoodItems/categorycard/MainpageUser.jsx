@@ -46,7 +46,9 @@ const createOrder = () =>{fetch(`http://localhost:8090/user/home/GenerateOrder` 
  
    console.log("Saving this order id in storage: " + data.order_id);
       localStorage.setItem('orderid',data.order_id);
-     
+     const insertedorderid = localStorage.getItem('orderid');
+     console.log("Orderid in the local storage just saved: " , insertedorderid);
+
   
     
     })
@@ -67,7 +69,7 @@ count++;
   return (
   
   <div className="text-center items-center">
-     <NavbarUser/>
+     <NavbarUser orderid = {orderid}/>
      <h1 className="text-center text-7xl text-black font-semibold m-10 ">Select A Category</h1>
      <div className="  gap-12 p-9  m-22 backdrop-blur-sm">
 

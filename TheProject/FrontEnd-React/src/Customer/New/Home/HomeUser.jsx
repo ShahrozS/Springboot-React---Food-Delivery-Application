@@ -8,9 +8,11 @@ import { useParams } from 'react-router-dom';
 export  function UserHome  () {
  
 
+localStorage.setItem('orderid' , '');
 const orderid = localStorage.getItem('orderid');
+console.log("orderid when option page: " , orderid);
   
-console.log(orderid);
+
 const username2 = username;
 
 

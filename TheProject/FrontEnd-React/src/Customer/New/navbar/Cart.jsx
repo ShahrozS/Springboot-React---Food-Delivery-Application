@@ -1,10 +1,13 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { orderid, token } from '../../../config';
+import { token } from '../../../config';
 import { useNavigate } from 'react-router-dom';
 
 
+// const orderid = localStorage.getItem('orderid');
+
+// console.log("Order id in cart " + orderid );
 
 function calculateTotal(products) {
 
@@ -13,7 +16,10 @@ function calculateTotal(products) {
       return accumulator + product.price * product.quantity;
     }, 0);
   }
-export default function  Cart({closeCallback}) {
+export default function  Cart({orderid,closeCallback}) {
+
+
+  console.log(orderid + " in cart");
   const navigateTo = useNavigate();
 
     const [total,setTotal] = useState(0);
@@ -74,7 +80,7 @@ method:"GET",
         };
       });
 
-      console.log(formattedProducts);
+      console.log("Opened the cart  "  +formattedProducts);
       setProducts(formattedProducts);
 }).catch((error)=>{
     console.log("Error : " , error);
@@ -82,6 +88,29 @@ method:"GET",
 
 
 },[]);
+
+
+useEffect(()=>{
+  fetch(`http://localhost:8090/cart/getFoodItem/${orderid}` , {
+method:"GET",
+    headers:{
+        'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+        'Authorization': `Bearer ${token}`,
+    },
+}).then((response)=>{
+    if(response.ok){
+        return response.json();
+        console.log("Item is here")
+
+    }
+    else{
+        console.log("Failed to catch item");
+    }
+}).then((data)=>{
+  console.log("Fooditems in : " + orderid + " : "  +data)
+})
+},[]);
+
 
 
 
