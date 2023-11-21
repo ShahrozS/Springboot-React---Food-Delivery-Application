@@ -14,10 +14,10 @@ import Cart from './Cart'
 
 const navigation = [
   { name: 'Home', Link:`/user/home`, href: '#', current: true },
-  { name: 'Order  Food',Link:`/user/home/FoodItems`, href: '#', current: false },
-  { name: 'Order History', Link:'/admin/home/FoodItems',href: '#', current: false },
-  { name: 'Manage Account',Link:'/admin/home/Users', href: '#', current: false },
-  { name: `Order Status `,Link:'/admin/home/Orders', href: '#', current: false },
+  { name: 'Order Food',Link:`/user/home/FoodItems`, href: '#', current: false },
+  { name: 'Previous Orders', Link:'/user/home/previousorder',href: '#', current: false },
+  { name: 'Manage Account',Link:'/user/home/manageaccount', href: '#', current: false },
+  { name: `Order Status `,Link:'/user/home/orderstatus', href: '#', current: false },
 
 ]
 

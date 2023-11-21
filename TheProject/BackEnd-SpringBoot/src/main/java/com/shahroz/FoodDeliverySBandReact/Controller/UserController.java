@@ -96,5 +96,14 @@ public class UserController {
         }
     }
 
+    @PutMapping("/update-user/{userid}")
+    public User updateUser(@RequestBody User user, @PathVariable String userid){
+        Long user_id = Long.valueOf(userid);
+
+        return userService.updateUser(user_id,user);
+
+
+    }
+
 
 }

@@ -23,7 +23,7 @@ const orderid = localStorage.getItem('orderid');
 
 
 <Link to="/user/home/previousorder"><CardsOfOptionsUser option={name2}/> </Link>
-<Link to="/user/home/Orders"><CardsOfOptionsUser option={name3}/></Link>
+<Link to="/user/home/manageaccount"><CardsOfOptionsUser option={name3}/></Link>
 <Link to="/user/home/orderstatus"><CardsOfOptionsUser option={name4}/></Link>
     
     

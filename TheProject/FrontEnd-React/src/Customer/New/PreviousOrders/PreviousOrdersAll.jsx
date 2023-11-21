@@ -51,7 +51,7 @@ useEffect(() => {
       
         return response.json(); // Assuming the response is JSON data
       } else {
-        throw new Error('Failed to fetch categoriess.');
+        throw new Error('Failed to fetch previous orders.');
       }
     })
     .then((data) => {
@@ -61,7 +61,7 @@ useEffect(() => {
     .catch((error) => {
       console.error('Error:', error);
     });
-}, []);
+}, [userid]);
 
 
 

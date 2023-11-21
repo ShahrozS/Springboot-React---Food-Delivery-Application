@@ -1,7 +1,7 @@
 
 const token = localStorage.getItem('token');
-
-export const getUserByUsername = (username) => {
+const username = localStorage.getItem('username');
+export const getUserByUsername = () => {
   console.log(username)
   return fetch(`http://localhost:8090/user/users/${username}`, {
     method: 'GET',
@@ -11,6 +11,7 @@ export const getUserByUsername = (username) => {
   })
     .then((response) => {
       if (response.ok) {
+        console.log("Getting user by username : " + username);
         return response.json();
       } else {
         throw new Error('Failed to fetch user.');

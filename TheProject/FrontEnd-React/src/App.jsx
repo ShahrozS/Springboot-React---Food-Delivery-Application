@@ -26,6 +26,7 @@ import { DispatchedPage } from './Admin/AllOrders/Dispatch/DispatchedPage';
 import PreviousOrders from './Customer/New/PreviousOrders/PreviousOrder';
 import OrderStatus from './Customer/New/OrderStatus/OrderStatus';
 import Users from './Admin/ManageUsers/User';
+import ManageAccount from './Customer/New/ManageAccount/ManageAccount';
 
 
 
@@ -174,7 +175,8 @@ function App() {
           
           //Order status
           <Route path="/user/home/orderstatus" element={<OrderStatus/>}/>    
-    
+          //edit user
+          <Route path="/user/home/manageaccount" element={<ManageAccount/>}/>
     
         </Routes> 
     </Router>

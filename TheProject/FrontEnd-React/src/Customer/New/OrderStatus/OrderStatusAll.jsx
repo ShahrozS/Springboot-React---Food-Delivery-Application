@@ -34,6 +34,7 @@ export  function OrderStatusAll() {
 
 let count = 0 ; 
 // Fetching now
+console.log("User id about to fetch before useeffect: " + userid)
 useEffect(() => {
 
  console.log(" about to fetch the previos order of " + userid);
@@ -61,7 +62,7 @@ useEffect(() => {
     .catch((error) => {
       console.error('Error:', error);
     });
-}, []);
+}, [userid]);
 
 
 

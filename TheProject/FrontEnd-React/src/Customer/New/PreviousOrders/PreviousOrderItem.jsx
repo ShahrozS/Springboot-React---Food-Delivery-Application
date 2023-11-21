@@ -73,7 +73,7 @@ export const PreviousOrderItem = ({index,Order}) => {
 
   return (
     <div>
-    <div className='categoryorder'>
+    <div className='previousorder'>
         
         <p>Order no. {Order.order_id}</p>
         <div>
@@ -81,7 +81,7 @@ export const PreviousOrderItem = ({index,Order}) => {
         </div>
     </div>
 
-    <div className='categoryorderdetails'>
+    <div className='previousorderdetails'>
     <div className=" justify-center align-middle items-center mt-1 space-y-3 rounded-lg border-white bg-dark px-2 py-4 sm:px-6">
     <ul role="list" className="-my-6 divide-y divide-gray-200 ">
                             {products.map((product) => (

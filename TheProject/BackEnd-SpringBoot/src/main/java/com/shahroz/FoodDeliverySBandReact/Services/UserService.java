@@ -41,7 +41,24 @@ user.setPassword(passwordEncoder.encode(user.getPassword()));
 
     @Override
     public User updateUser(Long id, User user) {
-        return null;
+
+
+        User existinguser = userrepository.findById(id).orElseThrow(()->new RuntimeException("Entity not found"));
+        existinguser.setPhone_number(user.getPhone_number());
+
+
+        existinguser.setFirst_name(user.getFirst_name());
+
+        existinguser.setLast_name(user.getLast_name());
+
+        existinguser.setAddress(user.getAddress());
+
+existinguser.setEmail(user.getEmail());
+
+return userrepository.save(existinguser);
+
+
+
     }
 
     @Override
