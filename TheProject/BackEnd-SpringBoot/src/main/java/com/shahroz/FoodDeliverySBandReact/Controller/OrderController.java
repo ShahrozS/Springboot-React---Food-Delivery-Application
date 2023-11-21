@@ -1,6 +1,8 @@
 package com.shahroz.FoodDeliverySBandReact.Controller;
 
 import com.shahroz.FoodDeliverySBandReact.Services.OrdersService;
+import com.shahroz.FoodDeliverySBandReact.Services.UserService;
+import com.shahroz.FoodDeliverySBandReact.entities.User;
 import com.shahroz.FoodDeliverySBandReact.entities.orders;
 import com.shahroz.FoodDeliverySBandReact.entities.payment;
 import jakarta.websocket.server.PathParam;
@@ -75,6 +77,20 @@ public orders getOrderByID(@PathVariable String orderid){
         Long order_id = Long.valueOf(orderid);
 
         return ordersService.findById(order_id);
+    }
+    @Autowired
+    UserService userService;
+
+    @GetMapping("previousorders/{userid}")
+    public List<orders> findByUser(@PathVariable String userid)
+    {
+
+        System.out.println("Finding orders by user id " + userid);
+        Long user_id = Long.valueOf(userid);
+        User user = userService.findById(user_id);
+
+
+        return ordersService.findByUser(user);
     }
 
 }

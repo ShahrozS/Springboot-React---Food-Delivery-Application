@@ -77,6 +77,7 @@ public class UserController {
     @PostMapping("/home/GenerateOrder")
     public ResponseEntity<orders> createOrder(Principal principal){
         orders neworder = new orders();
+        System.out.println("We are creating order for this user : " + principal.getName());
         neworder.setUser(userService.findByEmail(principal.getName()));
         neworder.setStatus("Pending");
         neworder.setDatetime(new Date());

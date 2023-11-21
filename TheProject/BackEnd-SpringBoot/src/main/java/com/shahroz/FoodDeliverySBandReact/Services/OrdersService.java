@@ -1,5 +1,6 @@
 package com.shahroz.FoodDeliverySBandReact.Services;
 
+import com.shahroz.FoodDeliverySBandReact.entities.User;
 import com.shahroz.FoodDeliverySBandReact.entities.orders;
 import com.shahroz.FoodDeliverySBandReact.repository.Orderrepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,11 @@ public class OrdersService implements ordersServiceInterface {
     @Override
     public List<orders> getAllOrders() {
        return orderrepository.findAll();
+    }
+
+    @Override
+    public List<orders> findByUser(User user) {
+        return orderrepository.findByUser(user);
     }
 
 

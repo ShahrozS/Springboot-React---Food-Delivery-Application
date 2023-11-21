@@ -11,7 +11,7 @@ export  function  AllCardsOfOptionsUser({}) {
   //isme db se samaaan ayega  
 
   const name1 = "Order Food";
-  const name2 = "Previous Order";
+  const name2 = "Previous Orders";
   const name3 = "Manage Account";
   const name4 = "Order Status";
 const orderid = localStorage.getItem('orderid');
@@ -22,9 +22,9 @@ const orderid = localStorage.getItem('orderid');
 <Link to={`/user/home/FoodItems`}><CardsOfOptionsUser orderid = {orderid}  option={name1}/>  </Link>
 
 
-<Link to="/user/home/FoodItems"><CardsOfOptionsUser option={name2}/> </Link>
+<Link to="/user/home/previousorder"><CardsOfOptionsUser option={name2}/> </Link>
 <Link to="/user/home/Orders"><CardsOfOptionsUser option={name3}/></Link>
-<Link to="/user/home/Users"><CardsOfOptionsUser option={name4}/></Link>
+<Link to="/user/home/orderstatus"><CardsOfOptionsUser option={name4}/></Link>
     
     
     </div>

@@ -23,6 +23,9 @@ import DeliveryGuyForm from './Admin/DeliveryGuys/DeliveryGuysForm';
 import DeliveryBoysAll from './Admin/DeliveryGuys/DeliveryguysAll';
 import Deliveryguys from './Admin/DeliveryGuys/Deliveryguys';
 import { DispatchedPage } from './Admin/AllOrders/Dispatch/DispatchedPage';
+import PreviousOrders from './Customer/New/PreviousOrders/PreviousOrder';
+import OrderStatus from './Customer/New/OrderStatus/OrderStatus';
+import Users from './Admin/ManageUsers/User';
 
 
 
@@ -143,7 +146,9 @@ function App() {
           />  
         ))}
 
-
+            // All Users
+        
+        <Route path='/admin/home/AllUsers' element={<Users/>}/>
 
 //Users route
       
@@ -161,6 +166,16 @@ function App() {
 
           <Route path="/user/home/checkout" element={<Checkout/>}/>
           <Route path="/user/home/checkout/placedorder" element={<PlacedOrder/>}/>
+    
+    
+    
+          //previousorders
+          <Route path="/user/home/previousorder" element={<PreviousOrders/>}/>
+          
+          //Order status
+          <Route path="/user/home/orderstatus" element={<OrderStatus/>}/>    
+    
+    
         </Routes> 
     </Router>
 
