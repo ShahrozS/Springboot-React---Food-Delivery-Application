@@ -147,7 +147,7 @@ function App() {
           />  
         ))}
 
-            // All Users
+            //Manage All Users
         
         <Route path='/admin/home/AllUsers' element={<Users/>}/>
 

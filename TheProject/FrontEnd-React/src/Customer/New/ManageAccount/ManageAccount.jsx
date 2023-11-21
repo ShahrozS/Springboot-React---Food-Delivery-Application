@@ -116,8 +116,8 @@ function cancel(){
     <div className='flex h-screen p-44 pt-10 pl-4 backdrop-blur-sm justify-center '>
 
 
-    <form onSubmit={handleSubmit}>
-      <div className="space-y-12">
+    <form onSubmit={handleSubmit} className=''>
+      <div className="space-y-12 p-10">
      
 
         <div className="border-b border-gray-900/10 pb-12">

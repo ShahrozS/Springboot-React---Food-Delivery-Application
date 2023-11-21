@@ -88,10 +88,13 @@ const closeMyJSX = () => {
                   </div>
                 </div>
               </div>
-        
+              <Link to="/auth/Login">
+                <button href="SignUp.js" className=" bg-red text-white font-semibold px-2 text-lg py-1 rounded-lg ml-2">Log out</button>
+                </Link>
             </div>
+            
           </div>
-
+        
           <Disclosure.Panel className="sm:hidden">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
@@ -114,6 +117,8 @@ const closeMyJSX = () => {
           </Disclosure.Panel>
         </>
       )}
+      
     </Disclosure>
+    
   )
 }

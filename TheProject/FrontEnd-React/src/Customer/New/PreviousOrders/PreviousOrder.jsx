@@ -13,9 +13,9 @@ export const PreviousOrders = () => {
 
   return (
 
-    <div>
+    <div className='backdrop-blur-sm'>
       <NavbarUserWithoutCart/>
-    <div className='Categories backdrop-blur-sm'>
+    <div className='Categories '>
       
     
     <PreviousOrdersAll/>
