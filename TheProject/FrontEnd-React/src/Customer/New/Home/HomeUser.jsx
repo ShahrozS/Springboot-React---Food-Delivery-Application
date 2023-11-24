@@ -9,7 +9,7 @@ import NavbarUserWithoutCart from '../navbar/NavBarWithoutCart';
 export  function UserHome  () {
  
 
-localStorage.setItem('orderid' , '');
+
 const orderid = localStorage.getItem('orderid');
 console.log("orderid when option page: " , orderid);
   

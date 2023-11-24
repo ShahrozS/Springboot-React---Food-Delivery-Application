@@ -27,6 +27,8 @@ import PreviousOrders from './Customer/New/PreviousOrders/PreviousOrder';
 import OrderStatus from './Customer/New/OrderStatus/OrderStatus';
 import Users from './Admin/ManageUsers/User';
 import ManageAccount from './Customer/New/ManageAccount/ManageAccount';
+import { Reorder } from '@mui/icons-material';
+import Reorderr from './Customer/New/PreviousOrders/Reorder';
 
 
 
@@ -178,6 +180,8 @@ function App() {
           //edit user
           <Route path="/user/home/manageaccount" element={<ManageAccount/>}/>
     
+           //reorder
+           <Route path="/user/home/reorder"element={<Reorderr/>}/>
         </Routes> 
     </Router>
 

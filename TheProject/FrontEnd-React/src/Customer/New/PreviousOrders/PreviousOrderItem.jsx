@@ -68,6 +68,21 @@ export const PreviousOrderItem = ({index,Order}) => {
     
 
  },[]) 
+const navigateTo = useNavigate();
+
+localStorage.setItem('reorderid','');
+ const Reorder = (orderid)=>{
+
+
+
+  console.log("Reordering!!");
+
+  localStorage.setItem('reorderid' , orderid);
+  navigateTo('/user/home/reorder');
+
+
+
+ }
 
 //to do: Make another page of status
 
@@ -77,7 +92,7 @@ export const PreviousOrderItem = ({index,Order}) => {
         
         <p>Order no. {Order.order_id}</p>
         <div>
-            <button  className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Reorder</button>
+            <button onClick={()=>{Reorder(Order.order_id)}}  className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Reorder</button>
         </div>
     </div>
 

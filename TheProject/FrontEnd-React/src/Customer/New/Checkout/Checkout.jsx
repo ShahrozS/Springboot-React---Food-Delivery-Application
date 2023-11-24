@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 const token = localStorage.getItem('jwtToken');
 
 import { Link } from "react-router-dom";
+import getUserByUsername from "../../../Admin/Util/GettingAUser";
 
 
 export const Checkout = () => {
@@ -109,31 +110,40 @@ method:"GET",
 
 
 // fetching user details
+const username1 = localStorage.getItem('username');
+getUserByUsername(username1).then((data)=>{
+setEmail(data.email);
+setAddress(data.address);
+setFullName(data.first_name+" "+data.last_name);
 
-fetch(`http://localhost:8090/user/current-user` , {
-method:"POST",
-    headers:{
-        'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
-        'Authorization': `Bearer ${token}`,
-    },
-}).then((response)=>{
-  if(response.ok){
-    
-    console.log("Fetched user items")
-    return response.json();
-  }
-  else{
-    console.log("Failed to fetch user")
-  }
-
-}).then((data)=>{
-  setEmail(data.email)
-  setAddress(data.address)
-  setFullName(data.first_name+ " " + data.last_name)
-
-}).catch((error)=>{
-  console.log("Error " , error);
 })
+
+//principle issue
+
+// fetch(`http://localhost:8090/user/current-user` , {
+// method:"POST",
+//     headers:{
+//         'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+//         'Authorization': `Bearer ${token}`,
+//     },
+// }).then((response)=>{
+//   if(response.ok){
+    
+//     console.log("Fetched user items")
+//     return response.json();
+//   }
+//   else{
+//     console.log("Failed to fetch user")
+//   }
+
+// }).then((data)=>{
+//   setEmail(data.email)
+//   setAddress(data.address)
+//   setFullName(data.first_name+ " " + data.last_name)
+
+// }).catch((error)=>{
+//   console.log("Error " , error);
+// })
 
 
 

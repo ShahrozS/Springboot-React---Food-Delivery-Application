@@ -4,7 +4,7 @@ import React , {useState} from 'react'
 import FooditemsAll, { FooditemsAllUser } from './FooditemsAllUser'
 import NavbarUser from '../../navbar/NavbarUser';
 import { useParams } from 'react-router-dom';
-
+const token = localStorage.getItem("jwtToken");
 
 export const FooditemsUser = ({category}) => {
 

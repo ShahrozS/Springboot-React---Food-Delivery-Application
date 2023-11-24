@@ -2,11 +2,13 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { Description } from '@mui/icons-material';
+const token = localStorage.getItem("jwtToken");
 
 export const FoodUser = ({orderid,fooditem,category}) => {
   const [quantity, setQuantity] = useState(0);
   const[foodid , setFoodid] = useState(fooditem.food_id);
   const[orderidd , setOrderidd] = useState(orderid);
+  
 
   const [isHovered, setIsHovered] = useState(false);
   const addItem = e=>{
@@ -39,6 +41,11 @@ export const FoodUser = ({orderid,fooditem,category}) => {
     })
       .then((response) => {
         if (response.ok) {
+          const temp = localStorage.getItem('quantity');
+          const inttemp = +temp;
+          const quantity2 = +quantity;
+          const inttemp2 = inttemp+quantity2;
+          localStorage.setItem('quantity',inttemp2);
           console.log("Item added to card");
         } else {
           console.log("Failed to add the item");

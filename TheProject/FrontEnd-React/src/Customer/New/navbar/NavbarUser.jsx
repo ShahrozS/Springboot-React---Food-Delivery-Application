@@ -2,7 +2,6 @@ import { Fragment, useEffect, useRef, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link } from 'react-router-dom'
-
 import Cart from './Cart'
 
 // const orderid = localStorage.getItem('orderid');
@@ -43,11 +42,25 @@ const closeMyJSX = () => {
   setOpenCart(false);
 };
 
-
   console.log(orderid + " In the nav bar.");
 
+  console.log("Quantity in nav bar: " + localStorage.getItem('quantity'))
+
+  const [cartQuantity, setCartQuantity] = useState(0);
+
+  useEffect(() => {
+    // Refresh the cartQuantity every second
+    const intervalId = setInterval(() => {
+      setCartQuantity(localStorage.getItem('quantity'));
+    }, 1000);
+
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []);
+
+ 
   return (
-    
+
  
  <Disclosure as="nav" className=" bg-dark">
       {({ open }) => (
@@ -95,9 +108,10 @@ const closeMyJSX = () => {
                   <span className="absolute -inset-1.5" />
                   <span className="sr-only">View cart</span>
                   <ShoppingCartIcon   className="h-8 w-8 " aria-hidden="true" />
-                  <span className='absolute top-0 right-0 left-7 bg-red-500 text-white w-7 h-7 flex items-center justify-center rounded-full  text-base'> {}</span>
+                  <span className='absolute top-0 right-0 left-7 bg-red-500 text-white w-7 h-7 flex items-center justify-center rounded-full  text-base'> {
+                  cartQuantity}</span>
                 </button>
-                {openCart && <Cart orderid = {orderid}  closeCallback={closeMyJSX}/>}
+                {openCart && <Cart orderid = {orderid}  closeCallback={closeMyJSX}  />}
               
                 {/* Profile dropdown */}
                
@@ -128,5 +142,7 @@ const closeMyJSX = () => {
         </>
       )}
     </Disclosure>
+  
+
   )
 }

@@ -11,7 +11,6 @@ import Cart from './Cart'
 
 
 
-
 const navigation = [
   { name: 'Home', Link:`/user/home`, href: '#', current: true },
   { name: 'Order  Food',Link:`/user/home/FoodItems`, href: '#', current: false },

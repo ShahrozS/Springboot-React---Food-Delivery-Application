@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 // const orderid = localStorage.getItem('orderid');
 
-// console.log("Order id in cart " + orderid );
 
+// console.log("Order id in cart " + orderid );
 function calculateTotal(products) {
 
 
@@ -16,7 +16,9 @@ function calculateTotal(products) {
       return accumulator + product.price * product.quantity;
     }, 0);
   }
+
 export default function  Cart({orderid,closeCallback}) {
+
 
 
   console.log(orderid + " in cart");
@@ -46,6 +48,7 @@ method:"GET",
         console.log("Failed to catch item");
     }
 }).then((data)=>{
+  
 
     console.log(data)
     const formattedProducts = data.map((item) => {
@@ -59,6 +62,7 @@ method:"GET",
         }
         if (item.hasOwnProperty('quantity')) {
           pquantity = item.quantity;
+ 
         }
 
         if (item.hasOwnProperty('foodItem')) {
@@ -81,6 +85,7 @@ method:"GET",
       });
 
       console.log("Opened the cart  "  +formattedProducts);
+     
       setProducts(formattedProducts);
 }).catch((error)=>{
     console.log("Error : " , error);
@@ -117,15 +122,18 @@ method:"GET",
 
 /// calculating sum
 useEffect(() => {
-    // Your existing code to fetch and format products
-    // ...
+  console.log("Calculating Sum ")
 
-    // Update the total when products change
     const calculatedTotal = calculateTotal(products);
     setTotal(calculatedTotal);
   }, [products]);
 
+  //calculating total number of items.
 
+
+
+
+  
   const Checkout=()=>{
    
     navigateTo("/user/home/checkout");
@@ -156,7 +164,7 @@ useEffect(() => {
 
   }
 
-const deleteitem =(sid,price) =>{
+const deleteitem =(sid,price,quantity) =>{
 
 console.log("Deletnig......")
 
@@ -177,6 +185,12 @@ headers: {
 
 // Set the state with the updated array
             setProducts(newProducts);
+
+            const temp = localStorage.getItem('quantity');
+            const inttemp = +temp;
+            const quantity2 = +quantity;
+            const inttemp2 = inttemp-quantity2;
+            localStorage.setItem('quantity',inttemp2);
             console.log("Item is deleted");
         }
         else{
@@ -238,7 +252,10 @@ console.log("HII");
                           </button>
                         </div>
                       </div>
+                        <div>{
+                         orderid==="" ?<p  className='mt-10 text-xl text-red font-semibold'>Create an order first</p>:""
 
+                          }</div>
                       <div className="mt-8">
                         <div className="flow-root">
                           <ul role="list" className="-my-6 divide-y divide-gray-200">
@@ -262,7 +279,7 @@ console.log("HII");
                                     <div className="flex">
                                       <button
                                         type="button"
-                                        onClick={() => deleteitem(product.id,product.price)}
+                                        onClick={() => deleteitem(product.id,product.price,product.quantity)}
 
                                         className="font-medium text-indigo-600 hover:text-indigo-500"
                                       >

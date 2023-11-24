@@ -11,8 +11,6 @@ export  function AllCardsOfCategoryUser({order_id}) {
   
 
 
-  localStorage.setItem("orderid" , "");
-  localStorage.setItem("orderid",order_id);
 
   console.log("Savign this order id in storage : " , order_id);
   //isme db se samaaan ayega  

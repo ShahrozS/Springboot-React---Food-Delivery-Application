@@ -19,15 +19,16 @@ export default function Login() {
 
 //setting local storage items to null
 
-localStorage.setItem('jwtToken' , '');
-localStorage.setItem('username' , '');
 
-localStorage.setItem('deliveryid' , '');
-localStorage.setItem('orderid' , '');
 
   const handleSubmit = e =>{
     
 
+    localStorage.setItem('jwtToken' , '');
+    localStorage.setItem('username' , '');
+    
+    localStorage.setItem('deliveryid' , '');
+    localStorage.setItem('orderid' , '');
 
 e.preventDefault();
 
@@ -85,7 +86,7 @@ fetch('http://localhost:8090/auth/login', {
     const check = localStorage.getItem('username');
     const check2 = localStorage.getItem('jwtToken');
     console.log("Username in localstorage:" +check);
-    console.log("Username in localstorage:" +check);
+    console.log("Username in localstorage:" +check2);
 
 
 
@@ -193,11 +194,11 @@ getUserByUsername(data.username)
                   <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                     Password
                   </label>
-                  <div className="text-sm">
+                  {/* <div className="text-sm">
                     <a href="#" className="font-semibold text-dark  hover:text-indigo-500">
                       Forgot password?
                     </a>
-                  </div>
+                  </div> */}
                 </div>
                 <div className="mt-2">
                   <input

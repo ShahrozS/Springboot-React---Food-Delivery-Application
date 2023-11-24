@@ -93,7 +93,10 @@ const dispatch = (orderid) =>{
       
         <p>Order no. {Order.order_id}  By  {email}</p>
         <div>
-            <button onClick={()=>{dispatch(Order.order_id)}} className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Dispatch</button>
+            <button 
+              // style={{ opacity: Order.status == 'Dispatched' ? 0.5 : 1 }}
+              // disabled={Order.status == 'Dispatched'}
+            onClick={()=>{dispatch(Order.order_id)}} className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Dispatch</button>
         </div>
     </div>
   )
