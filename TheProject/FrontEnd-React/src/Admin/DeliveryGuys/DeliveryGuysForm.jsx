@@ -2,7 +2,6 @@
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import NavbarAdmin from '../NavbarAdmin';
 import { useState } from 'react';
-import { token } from '../../config';
 
 
 export default function DeliveryGuyForm({category}) {
@@ -62,7 +61,7 @@ console.log(data)
  
   return (
 
-<div>
+<div className='backdrop-blur-sm'>
 
             <NavbarAdmin/>
         <div className=' flex flex-col backdrop-blur-sm '>

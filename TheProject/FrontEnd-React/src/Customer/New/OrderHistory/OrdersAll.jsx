@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { CategoryItem } from './CategoryItem';
-import { token } from '../../config';
 
 export  function OrdersAll() {
   

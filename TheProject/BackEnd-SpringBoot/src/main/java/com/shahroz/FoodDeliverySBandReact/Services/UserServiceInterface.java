@@ -10,7 +10,7 @@ public interface UserServiceInterface {
     public User findById(Long id);
     List<User> getUsers();
     User updateUser(Long id, User user);
-    void deleteUser(Long id);
+    Optional<User> deleteUser(Long id);
 
     User findByEmail(String email);
 

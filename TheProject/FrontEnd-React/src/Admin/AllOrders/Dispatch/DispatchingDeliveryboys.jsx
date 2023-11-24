@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { token } from '../../../config';
 import { DispatchingDeliveryBoyItem } from './DispatchingDeliveryBoyItem';
+const token = localStorage.getItem("jwtToken");
 
 export  function DispatchingDeliveryBoysAll({orderidd}) {
   

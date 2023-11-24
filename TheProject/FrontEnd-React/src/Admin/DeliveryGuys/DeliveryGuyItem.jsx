@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import {  token } from '../../config';
+const token = localStorage.getItem("jwtToken");
+
 
 export const DeliveryGuyItem = ({index,DeliveryGuy}) => {
     console.log(DeliveryGuy.name);

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom';
 import FoodUser from './FooditemUser';
-import { token } from '../../../../config';
+const token = localStorage.getItem('jwtToken');
+const username = localStorage.getItem('username');
 
 export  function FooditemsAllUser({orderid,category}) {
   
 
+  console.log("Fetching food items with this token: " + username);
   //isme db se samaaan ayega  
   const[fooditems , setfooditems] = useState([
   ]);

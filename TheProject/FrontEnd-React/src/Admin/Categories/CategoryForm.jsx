@@ -1,6 +1,5 @@
 import React , {useState} from 'react'
-import {  token } from '../../config';
-
+const token = localStorage.getItem("jwtToken");
 export const CategoryForm = () => {
  
   const [value,setValue] = useState("");

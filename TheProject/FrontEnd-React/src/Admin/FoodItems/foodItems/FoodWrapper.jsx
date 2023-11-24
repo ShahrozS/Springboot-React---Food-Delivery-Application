@@ -14,7 +14,7 @@ export const Fooditems = ({category}) => {
 
   return (
 
-    <div>
+    <div className='backdrop-blur-sm'>
       <NavbarAdmin/>
     <div className='Categories  backdrop-blur-sm'>
     

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { token } from '../../../config';
+const token = localStorage.getItem('jwtToken');
 import AllCardsOfOptionsUser from './AllCardsOfOptionsUsers';
 import NavigationUser from './NavbarUser';
 import { useParams } from 'react-router-dom';

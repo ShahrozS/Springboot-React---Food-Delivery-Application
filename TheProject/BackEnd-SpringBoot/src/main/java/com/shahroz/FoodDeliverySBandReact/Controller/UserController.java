@@ -8,9 +8,11 @@ import com.shahroz.FoodDeliverySBandReact.entities.Category;
 import com.shahroz.FoodDeliverySBandReact.entities.User;
 import com.shahroz.FoodDeliverySBandReact.entities.fooditem;
 import com.shahroz.FoodDeliverySBandReact.entities.orders;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -54,10 +56,10 @@ public class UserController {
     }
     //Getting all the food items a cateogyr holds
     @GetMapping("/home/FoodItems/{category_name}/ShowAll")
-    public List<fooditem> getAllFoodItems( Principal principal, @PathVariable String category_name){
+    public List<fooditem> getAllFoodItems( @PathVariable String category_name){
 
+        System.out.println("Getting food items of " + category_name);
 
-            System.out.println("PRINCIPLE CALLED " + principal.getName());
         System.out.println("Getting food items");
         System.out.println("Finding by " + category_name);
         Long categoryid= categoryService.FindByName(category_name);
@@ -80,27 +82,35 @@ public class UserController {
     }
 
 
+
 // Generating an order id as soon as user logs in:
-    @PostMapping("/home/GenerateOrder")
-    public ResponseEntity<orders> createOrder(Principal principal){
-        orders neworder = new orders();
-        System.out.println("We are creating order for this user : " + principal.getName());
-        neworder.setUser(userService.findByEmail(principal.getName()));
-        neworder.setStatus("Pending");
-        neworder.setDatetime(new Date());
+    @PostMapping("/home/GenerateOrder/{username}")
+    public ResponseEntity<orders> createOrder(@AuthenticationPrincipal Principal principal,@PathVariable String username){
+  //      if(principal!=null){
+            orders neworder = new orders();
+            System.out.println("We are creating order for this user : " + username);
+            neworder.setUser(userService.findByEmail(username));
+            neworder.setStatus("Pending");
+            neworder.setDatetime(new Date());
 
-        // Attempt to create the order
-        orders createdOrder = ordersService.createOrder(neworder);
+            // Attempt to create the order
+            orders createdOrder = ordersService.createOrder(neworder);
 
-        if (createdOrder != null) {
-            // Order was successfully created
-            System.out.println("Creating order for " + principal.getName());
-            return ResponseEntity.ok(createdOrder);
-        } else {
-            // Handle the case where order creation failed
-            System.out.println("Error in creating a new order");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-        }
+            if (createdOrder != null) {
+                // Order was successfully created
+
+                return ResponseEntity.ok(createdOrder);
+            } else {
+                // Handle the case where order creation failed
+                System.out.println("Error in creating a new order");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+            }
+      //  }
+   //     else{
+   //         System.out.println("Principle not found!!");
+   //     return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+    //    }
+
     }
 
     @PutMapping("/update-user/{userid}")

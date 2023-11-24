@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 
 import  { Food } from './fooditem';
 import { Link } from 'react-router-dom';
-import { token } from '../../../config';
+const token = localStorage.getItem('jwtToken');
+
 
 export  function FooditemsAll({category}) {
   
@@ -40,7 +41,7 @@ export  function FooditemsAll({category}) {
 
 
     return ( 
-    <div><h1 className=' mb-4 font-semibold text-4xl text-black'>All Food Items in </h1>
+    <div><h1 className=' mb-4 font-semibold text-4xl text-black'>All Food Items in {category}</h1>
     <Link to={`/admin/home/FoodItems/${category}/ShowAll/addItem`}>
     <div><button className='text-white bg-lightdark p-3 text-md font-semibold mb-4 rounded-lg '>Add New Item</button></div>
     </Link>

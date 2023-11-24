@@ -4,7 +4,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
     
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('jwtToken');
 
 export const OrderStatusitem = ({index,Order}) => {
   const [products,setProducts] = useState([]);

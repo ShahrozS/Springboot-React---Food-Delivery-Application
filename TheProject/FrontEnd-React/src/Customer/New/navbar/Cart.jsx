@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
-import { token } from '../../../config';
+const token = localStorage.getItem('jwtToken');
 import { useNavigate } from 'react-router-dom';
 
 
@@ -252,7 +252,7 @@ console.log("HII");
                                       <h3>
                                         <p>{product.name}</p>
                                       </h3>
-                                      <p className="ml-4">{product.price}</p>
+                                      <p className="ml-4">Rs. {product.price}</p>
                                     </div>
                                 
                                   </div>
@@ -281,10 +281,8 @@ console.log("HII");
                     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                       <div className="flex justify-between text-base font-medium text-gray-900">
                         <p>Subtotal</p>
-                        <p>{
-                        
-                  
-                        total}</p>
+                        <p>Rs. {
+                         total}</p>
                       </div>
                       <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                       <div className="mt-6">

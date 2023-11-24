@@ -62,8 +62,13 @@ return userrepository.save(existinguser);
     }
 
     @Override
-    public void deleteUser(Long id) {
-userrepository.deleteById(id);
+    public Optional<User> deleteUser(Long id) {
+
+        Optional<User> user = userrepository.findById(id);
+ userrepository.deleteById(id);
+
+ return user;
+
     }
 
 

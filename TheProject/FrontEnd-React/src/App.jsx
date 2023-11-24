@@ -11,7 +11,7 @@ import FoodItemForm from './Admin/FoodItems/newItemForm/NewItemForm';
 import AdminHome from './Admin/Home/Home';
 import Login from './Customer/Login_Register/Login/LoginPage';
 import { useEffect, useState } from 'react';
-import { token } from './config';
+
 import MainpageUser from './Customer/New/FoodItems/categorycard/MainpageUser';
 import FooditemsUser from './Customer/New/FoodItems/foodItems/FoodWrapperUser';
 import UserHome from './Customer/New/Home/HomeUser';
@@ -34,7 +34,7 @@ import ManageAccount from './Customer/New/ManageAccount/ManageAccount';
 //aosdjaasdas
 
 
-
+const token = localStorage.getItem('jwtToken');
 
 function App() {
 
@@ -159,7 +159,7 @@ function App() {
         {categories.map((category) => (
           <Route
             key={category.name}
-            path={`/user/home/FoodItems/${category.name}/ShowAll/:orderid`}
+            path={`/user/home/FoodItems/${category.name}/ShowAll`}
             element={<FooditemsUser category={category.name} />}
           />
         ))}

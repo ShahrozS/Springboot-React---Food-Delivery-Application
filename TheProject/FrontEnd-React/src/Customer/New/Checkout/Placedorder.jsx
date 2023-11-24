@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavbarUser from "../navbar/NavbarUser";
-import {  token } from "../../../config";
+const token = localStorage.getItem("jwtToken");
 import NavbarUserWithoutCart from "../navbar/NavBarWithoutCart";
 
 export const PlacedOrder = () => {

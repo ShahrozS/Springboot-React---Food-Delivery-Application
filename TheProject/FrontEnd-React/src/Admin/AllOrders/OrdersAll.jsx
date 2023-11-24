@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { token } from '../../config';
+
 import { OrderItem } from './OrderItem';
 
 export  function OrdersAll() {
@@ -10,6 +10,7 @@ export  function OrdersAll() {
    
   ]);
   
+  const token = localStorage.getItem('jwtToken');
 
 let count = 0 ; 
 // Fetching now

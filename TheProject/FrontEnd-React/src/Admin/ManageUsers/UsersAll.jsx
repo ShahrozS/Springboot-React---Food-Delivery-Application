@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { token } from '../../config';
 import { UserItem } from './UserItem';
-
+const token = localStorage.getItem('jwtToken');
 export  function UsersAll() {
   
 

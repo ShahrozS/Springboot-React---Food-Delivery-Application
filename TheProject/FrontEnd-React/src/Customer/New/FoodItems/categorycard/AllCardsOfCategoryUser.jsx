@@ -3,13 +3,18 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import CardsOfCategoryUser from './CardsOfCategoryUser';
-import { token } from '../../../../config';
+const token = localStorage.getItem('jwtToken');
 
 
-export  function AllCardsOfCategoryUser({orderid}) {
+
+export  function AllCardsOfCategoryUser({order_id}) {
   
 
 
+  localStorage.setItem("orderid" , "");
+  localStorage.setItem("orderid",order_id);
+
+  console.log("Savign this order id in storage : " , order_id);
   //isme db se samaaan ayega  
   const[usercards , setCards] = useState([
     
@@ -55,7 +60,7 @@ export  function AllCardsOfCategoryUser({orderid}) {
         <div className="grid grid-cols-3 gap-4 p-4">  
 {
   usercards.length > 0 ? usercards.map(item=>(
-    <Link to={`/user/home/FoodItems/${item.name}/ShowAll/${orderid}`}>
+    <Link to={`/user/home/FoodItems/${item.name}/ShowAll`}>
     <CardsOfCategoryUser  categoryname={item} />
     </Link>
       

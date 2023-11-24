@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
-import { token } from '../../../../config';
+import { Description } from '@mui/icons-material';
 
 export const FoodUser = ({orderid,fooditem,category}) => {
   const [quantity, setQuantity] = useState(0);
   const[foodid , setFoodid] = useState(fooditem.food_id);
   const[orderidd , setOrderidd] = useState(orderid);
 
- 
+  const [isHovered, setIsHovered] = useState(false);
   const addItem = e=>{
    
     console.log(fooditem);
@@ -25,6 +25,7 @@ export const FoodUser = ({orderid,fooditem,category}) => {
     }
 
 
+    console.log(  " ABout to add this item" +details )
     if(quantity>0){
 
     
@@ -52,15 +53,15 @@ export const FoodUser = ({orderid,fooditem,category}) => {
       console.log("ENTER QUANTITY");
     }
 
-
+setQuantity(0);
   };
   
  
  
  
   return (
-    <div className='category2 '>
-        <p>{fooditem.food_name}    {fooditem.price} </p>
+    <div className={`category2 ${isHovered ? 'hovered' : ''}`} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+        <p className='text-xl font-semibold'>{fooditem.food_name}   </p>
         
         
         <div>
@@ -69,6 +70,19 @@ export const FoodUser = ({orderid,fooditem,category}) => {
 
         <FontAwesomeIcon icon={faPlus} onClick={addItem} className=' hover:cursor-pointer px-2 font-bold text-2xl' />
         </div>
+        {isHovered && (
+        <div className='hovered-item'>
+          {/* Content of the sliding down item */}
+          {/* You can add any content, styles, or components here */}
+          <div className='text-black text-lg'>
+            <p>{fooditem.description}</p>
+                <p >Rs. {fooditem.price}</p>
+                <p className='text-gray-400 text-xs'>{fooditem.ingredients}</p>
+          </div>
+          
+      
+        </div>
+      )}
     </div>
   )
 

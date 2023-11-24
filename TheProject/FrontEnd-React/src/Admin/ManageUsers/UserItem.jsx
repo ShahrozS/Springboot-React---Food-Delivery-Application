@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import {  token } from '../../config';
+const token = localStorage.getItem('jwtToken');
+
 import { useNavigate } from 'react-router-dom';
     
 
@@ -84,6 +85,69 @@ const navigateTo = useNavigate();
 // }
 
 
+// fetch(`http://localhost:8090/order/${Order.order_id}` , {
+// method:"GET",
+//     headers:{
+//         'Content-Type': 'application/json', // Set the Content-Type header to indicate JSON data
+//         'Authorization': `Bearer ${token}`,
+//     },
+// }).then((response)=>{
+//     if(response.ok){
+//         return response.json();
+//         console.log("Item is here")
+
+//     }
+//     else{
+//         console.log("Failed to catch item");
+//     }
+// }).then((data)=>{
+
+//   setEmail(data.user.email);
+// console.log(data.user.email)
+
+//       })
+// .catch((error)=>{
+//     console.log("Error : " , error);
+// })
+
+
+const deleteUser = (userid) =>{
+
+
+
+
+
+
+// // fetching user details
+
+fetch(`http://localhost:8090/admin/home/deleteUser/${userid}` , {
+method:"Delete",
+    headers:{
+        'Content-Type': 'application/json', 
+        'Authorization': `Bearer ${token}`,
+    },
+}).then((response)=>{
+  if(response.ok){
+    
+    console.log("User deleted" + userid);
+    window.location.reload();
+
+        return response.json();
+
+  }
+  else{
+    console.log("Failed to fetch user")
+  }
+
+}).catch((error)=>{
+  console.log("Error " , error);
+})
+
+
+
+
+
+}
 
 
 
@@ -93,7 +157,7 @@ const navigateTo = useNavigate();
       
         <p>{User.user_id}  : {User.email}</p>
         <div>
-            <button className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Remove</button>
+            <button onClick={()=>{deleteUser(User.user_id)}}className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Remove</button>
         </div>
     </div>
   )

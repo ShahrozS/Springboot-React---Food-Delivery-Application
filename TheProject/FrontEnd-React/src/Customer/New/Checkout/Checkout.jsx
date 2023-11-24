@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import {  token } from "../../../config";
+const token = localStorage.getItem('jwtToken');
+
 import { Link } from "react-router-dom";
 
 
@@ -207,7 +208,7 @@ amount:(total+100),
     
     <div className="">
 <div className="flex    backdrop:blur-sm flex-col items-center border-b bg-white py-4 sm:flex-row sm:px-10 lg:px-20 xl:px-32">
-  <a href="#" className="text-2xl font-bold text-gray-800">sneekpeeks</a>
+  <a href="#" className="text-2xl font-bold text-gray-800">TheFoodExpress</a>
   <div className="mt-4 py-2 text-xs sm:mt-0 sm:ml-auto sm:text-base">
     <div className="relative">
       <ul className="relative flex w-full items-center justify-between space-x-2 sm:space-x-4">
@@ -216,7 +217,7 @@ amount:(total+100),
             ><svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg
           ></a>
-          <span className="font-semibold text-gray-900">Shop</span>
+          <span className="font-semibold text-gray-900">Items selected</span>
         </li>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
-import { token } from '../../config';
+const token = localStorage.getItem('jwtToken');
 import { DeliveryGuyItem } from './DeliveryGuyItem';
 
 

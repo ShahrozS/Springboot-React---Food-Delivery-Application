@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GetUser, { getUserByUsername } from "../../../Admin/Util/GettingAUser";
-import { token, username } from "../../../config";
+
 import AllCardsOfOptionsUser from "../../New/Home/AllCardsOfOptionsUsers";
 
 export default function Login() {
@@ -19,7 +19,7 @@ export default function Login() {
 
 //setting local storage items to null
 
-localStorage.setItem('token' , '');
+localStorage.setItem('jwtToken' , '');
 localStorage.setItem('username' , '');
 
 localStorage.setItem('deliveryid' , '');
@@ -83,6 +83,8 @@ fetch('http://localhost:8090/auth/login', {
     localStorage.setItem('jwtToken', data.jwtToken);
     localStorage.setItem('username', data.username);
     const check = localStorage.getItem('username');
+    const check2 = localStorage.getItem('jwtToken');
+    console.log("Username in localstorage:" +check);
     console.log("Username in localstorage:" +check);
 
 
@@ -150,11 +152,13 @@ getUserByUsername(data.username)
    <>
       
       <div className=" backdrop-blur-sm h-screen  ">
+      <a href="#" className="w-screen bg-dark h-24 align-middle items-center text-center flex justify-center text-5xl font-bold text-white">TheFoodExpress.</a>
+      <div className="flex mt-16   flex-1 flex-col  justify-center px-6 py-12 lg:px-8">  
 
-        <div className="flex min-h-full flex-1 flex-col  justify-center px-6 py-12 lg:px-8">
+      
           <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
           
-            <h2 className="mt-10 text-center text-4xl mb-2 font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-0 text-center text-3xl mb-14 font-bold leading-9 tracking-tight text-gray-900">
               Log in to your account
             </h2>
 <div className=" bg-gray-800 rounded-lg  p-0">
@@ -164,7 +168,7 @@ getUserByUsername(data.username)
    </div>    
       </div>
   
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+          <div className="mt-15 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">

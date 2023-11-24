@@ -20,11 +20,11 @@ export const Dispatch = ({orderid}) => {
 
 return(
 
-<div>
+<div className=" backdrop-blur-sm">
 
 <NavbarAdmin/>
 
-<div className=" backdrop-blur-sm flex flex-col mt-10 mb-10 items-center h-450vh">
+<div className="   flex flex-col mt-10 mb-10 items-center h-450vh">
   
 
         <div className="orderplaced flex items-center justify-center   text-5xl font-bold   bg-white ">

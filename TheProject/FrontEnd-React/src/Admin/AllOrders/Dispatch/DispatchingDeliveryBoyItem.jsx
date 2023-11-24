@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
-import { deliveryid, token } from '../../../config';
 import { useNavigate } from 'react-router-dom';
 
     
+const token = localStorage.getItem('jwtToken');
+const deliveryid = localStorage.getItem('deliveryid');
 
 export const DispatchingDeliveryBoyItem = ({orderid,DeliveryGuy}) => {
   console.log(DeliveryGuy.name + "asdds");

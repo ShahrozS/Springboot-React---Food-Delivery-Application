@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CategoryItem } from './CategoryItem';
-import { token } from '../../config';
+const token = localStorage.getItem('jwtToken');
+
 
 export  function CategoriesAll() {
   

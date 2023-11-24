@@ -2,7 +2,7 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-import { token } from '../../../config';
+const token = localStorage.getItem("jwtToken");
 export const Food = ({fooditem,category}) => {
  
  
@@ -34,9 +34,9 @@ export const Food = ({fooditem,category}) => {
  
   return (
     <div className='category'>
-        <p>{fooditem.food_name}    {fooditem.price} </p>
+        <p>{fooditem.food_name}  <span className='ml-3'>Rs.</span> <span className='text-black '> {   "    "+fooditem.price}</span>  </p>
         <div>
-            <FontAwesomeIcon icon={faTrash} onClick={DeleteCategory} className=' hover:cursor-pointer' />
+            <FontAwesomeIcon icon={faTrash} onClick={DeleteCategory} className=' hover:cursor-pointer text-red text-xl ' />
         </div>
     </div>
   )

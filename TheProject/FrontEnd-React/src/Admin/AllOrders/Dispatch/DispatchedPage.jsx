@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import { deliveryid, token } from "../../../config";
+
 import NavbarAdmin from "../../NavbarAdmin";
+const token = localStorage.getItem("jwtToken");
+const deliveryid = localStorage.getItem("deliveryid");
 
     
 
@@ -51,7 +53,7 @@ console.log(delivery)
 
     return(
 
-        <div>
+        <div className='backdrop-blur-sm'>
 
         <NavbarAdmin/>
             <div className=" backdrop-blur-sm flex flex-col mt-10 mb-10 items-center h-450vh">

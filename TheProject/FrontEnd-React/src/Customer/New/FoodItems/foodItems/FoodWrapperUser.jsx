@@ -8,7 +8,9 @@ import { useParams } from 'react-router-dom';
 
 export const FooditemsUser = ({category}) => {
 
-  const {orderid} = useParams();
+  const orderid = localStorage.getItem("orderid");
+
+  console.log("Order id from storage: " + orderid);
   console.log("food mai" + orderid);
 // const {categories,setTodos}= useState([
 
@@ -19,7 +21,7 @@ export const FooditemsUser = ({category}) => {
 
     <div className='backdrop-blur-sm'>
       <NavbarUser/>
-    <div className='Categories   '>
+    <div className='Categories'>
     
     <FooditemsAllUser orderid = {orderid} category={category} />
  

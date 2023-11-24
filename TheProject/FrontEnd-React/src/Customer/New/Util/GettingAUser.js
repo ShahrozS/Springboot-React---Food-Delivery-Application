@@ -1,5 +1,5 @@
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem('jwtToken');
 const username = localStorage.getItem('username');
 export const getUserByUsername = () => {
   console.log(username)

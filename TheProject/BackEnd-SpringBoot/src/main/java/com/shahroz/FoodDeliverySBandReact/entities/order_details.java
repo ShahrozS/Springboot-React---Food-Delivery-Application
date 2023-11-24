@@ -25,7 +25,7 @@ public class order_details
 
 
    @OneToOne
-   @JoinColumn(name = "order_id_order_id")
+   @JoinColumn(name = "order_id_order_id",unique = false)
    private orders orderId;
 
    @ManyToOne
