@@ -33,8 +33,16 @@ public class FoodItemController {
     }
 
     @GetMapping("/{category_name}/ShowAll")
-    public List<fooditem> getAllFoodItems(){
-        return fooditemService.FindAllFood();
+    public List<fooditem> getAllFoodItems(@PathVariable String category_name){
+
+        System.out.println("Finding by " + category_name);
+        Long categoryid= categoryService.FindByName(category_name);
+        Category category = categoryService.findById(categoryid);
+
+        System.out.println(category.getName());
+
+
+        return fooditemService.findByCategory(category);
     }
 
     @DeleteMapping("/{category_name}/ShowAll/{id}")

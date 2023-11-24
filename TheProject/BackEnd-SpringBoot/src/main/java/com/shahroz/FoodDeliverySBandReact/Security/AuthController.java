@@ -77,7 +77,10 @@ private final AuthenticationService service;
 
     @PostMapping("/create-user")
     public User createUser(@RequestBody User user){
-return userService.createUser(user);
+
+
+        user.setUserType(1);
+        return userService.createUser(user);
     }
 
 

@@ -24,7 +24,7 @@ export  function AllCardsOfOptions() {
 
 <Link to="/admin/home/FoodItems"><CardsOfOptions option={name2}/> </Link>
 <Link to="/admin/home/AllOrders"><CardsOfOptions option={name3}/></Link>
-<Link to="/admin/home/Users"><CardsOfOptions option={name4}/></Link>
+<Link to="/admin/home/AllUsers"><CardsOfOptions option={name4}/></Link>
 <Link to="/admin/DeliveryGuy"><CardsOfOptions option={name5}/></Link>
 
     

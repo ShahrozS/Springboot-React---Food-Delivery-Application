@@ -24,7 +24,7 @@ export  function FooditemsAll({category}) {
           return response.json(); // Assuming the response is JSON data
         } else {
           console.log(response)
-          throw new Error('Failed to fetch categories.');
+          throw new Error('Failed to fetch Food items.');
         }
       })
       .then((data) => {

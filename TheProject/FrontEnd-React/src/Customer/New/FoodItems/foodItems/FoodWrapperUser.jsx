@@ -17,9 +17,9 @@ export const FooditemsUser = ({category}) => {
 
   return (
 
-    <div>
+    <div className='backdrop-blur-sm'>
       <NavbarUser/>
-    <div className='Categories  backdrop-blur-sm '>
+    <div className='Categories   '>
     
     <FooditemsAllUser orderid = {orderid} category={category} />
  

@@ -13,7 +13,7 @@ public class FoodDeliverySBandReactApplication {
 		SpringApplication.run(FoodDeliverySBandReactApplication.class, args	);
 
 		System.out.print("Shahroz");
-
+//Admin can login with Email: Admin , Password: Admin.
 	}
  //shahrozsout
 }

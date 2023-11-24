@@ -45,7 +45,7 @@ export  function FooditemsAllUser({orderid,category}) {
     <div className='flex justify-center items-center '>
         
 
-    <div className='fooditem grid grid-cols-2 justify-center items-center '> 
+    <div className='fooditem grid grid-cols-2  gap-4 justify-center items-center '> 
 
 {
   

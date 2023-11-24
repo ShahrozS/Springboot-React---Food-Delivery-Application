@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GetUser, { getUserByUsername } from "../../../Admin/Util/GettingAUser";
-import { token } from "../../../config";
+import { token, username } from "../../../config";
 import AllCardsOfOptionsUser from "../../New/Home/AllCardsOfOptionsUsers";
 
 export default function Login() {
@@ -11,6 +11,7 @@ export default function Login() {
   const [Email, setEmail] = useState('');
   const [Password, setPassword] = useState('');
   const [userType, setUserType] = useState(1);
+  const[fetchedusertype,setFechedUserType] = useState(0);
   const [message, setMessage] = useState('');
   const handleUserTypeChange = (value) => {
     setUserType(value);
@@ -28,7 +29,6 @@ localStorage.setItem('orderid' , '');
     
 
 
- 
 e.preventDefault();
 
 const details = {
@@ -47,21 +47,22 @@ fetch('http://localhost:8090/auth/login', {
   .then((response) => {
     if (response.ok) {
       setMessage('')
+
       return response.json(); // Return the Promise from response.json()
     } else {
-      setMessage(JSON.stringify(response))
+      const msg = JSON.stringify(response);
+     console.log("Wrong")
+      setMessage("Username/Password was incorrect")
       throw new Error('Network response was not ok');
     }
   })
   .then((data) => { 
-    console.log("data = " + JSON.stringify(data));
-    
+    console.log("userType = " + data.username);
+
       // agar yaha me aik aur fetch chalaun, pass the username there, in the url, hmm
       // function in spring, which will take the username, generate uski id, make a new order row, add username usme. which will be empty.
 
-      const userdetails = {
-       
-      } 
+   
   //       fetch('http://localhost:8090/home/user/${data.username}/createordercol' , {
   //         method:'POST',
   //         headers:{
@@ -81,37 +82,62 @@ fetch('http://localhost:8090/auth/login', {
     
     localStorage.setItem('jwtToken', data.jwtToken);
     localStorage.setItem('username', data.username);
-     if(userType===1){
-
-  navigateTo(`/user/home`);
-
-//Getting the orderID
-  
-
-
-  }
+    const check = localStorage.getItem('username');
+    console.log("Username in localstorage:" +check);
 
 
 
 
-console.log("console log" + data.username)
+
+console.log("console log : " + data.username)
 
 getUserByUsername(data.username)
           .then((user) => {
-            console.log('User data:', user);
-            // Now you have the user data and can use it as needed.
+            console.log('User data: ', user.userType + " OF " + user.email);
+       
+            if(userType ===0){
+              if(user.userType===0){
+                  console.log("Succesfull admin login")
+              navigateTo('/admin/home');
+              }
+              else{
+                setMessage("You cannot login as Admin.")
+              }
+             
+            }
+            if(userType===1){
+              if(user.userType===1){
+              
+                console.log("Succesfull user login")
+
+              navigateTo(`/user/home`);
+              }
+              else{
+                setMessage("You cannot login as admin.")
+              }
+           
+                
+              
+              
+                }
           })
           .catch((error) => {
             console.error('Error fetching user:', error);
           });
-
-          if(userType ===0){
-            navigateTo('/admin/home');
-          }
+          console.log("UserType: " +userType + " and "+data.username+": " + fetchedusertype);
+          
   })
   .catch((error) => {
-    setMessage(' ' + error)
-    console.error('Error:', error);
+    console.log("in catch.")
+    console.log(error)
+    if(error=="Error: Network response was not ok"){
+      console.log("If true.")
+      setMessage("Account does not exist.");
+    }else{
+
+         setMessage("Username/Password is incorrect.")
+    }
+         console.error( error);
   });
 
    }
@@ -128,14 +154,15 @@ getUserByUsername(data.username)
         <div className="flex min-h-full flex-1 flex-col  justify-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
           
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+            <h2 className="mt-10 text-center text-4xl mb-2 font-bold leading-9 tracking-tight text-gray-900">
               Log in to your account
             </h2>
-
-            <p className="text-lg font-semibold text-red text-center">
+<div className=" bg-gray-800 rounded-lg  p-0">
+            <p className=" text-lg font-semibold text-red text-center">
   {message} {/* Display the message as text */}
 </p>
-          </div>
+   </div>    
+      </div>
   
           <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form className="space-y-6" onSubmit={handleSubmit}>

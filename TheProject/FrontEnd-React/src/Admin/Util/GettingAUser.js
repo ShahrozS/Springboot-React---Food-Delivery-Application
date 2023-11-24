@@ -1,5 +1,5 @@
-import { token } from "../../config";
 
+const token = localStorage.getItem('token');
 
 export const getUserByUsername = (username) => {
   console.log(username)

@@ -5,7 +5,7 @@ export const OrderHistoryPage = () => {
 
 return(
  
-<div>
+<div className="backdrop-blur-sm">
 
 <NavbarUser/>
 <OrdersAll/>

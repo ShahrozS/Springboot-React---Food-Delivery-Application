@@ -54,12 +54,19 @@ public class UserController {
     }
     //Getting all the food items a cateogyr holds
     @GetMapping("/home/FoodItems/{category_name}/ShowAll")
-    public List<fooditem> getAllFoodItems( Principal principal){
+    public List<fooditem> getAllFoodItems( Principal principal, @PathVariable String category_name){
 
 
             System.out.println("PRINCIPLE CALLED " + principal.getName());
         System.out.println("Getting food items");
-        return fooditemService.FindAllFood();
+        System.out.println("Finding by " + category_name);
+        Long categoryid= categoryService.FindByName(category_name);
+        Category category = categoryService.findById(categoryid);
+
+        System.out.println(category.getName());
+
+
+        return fooditemService.findByCategory(category);
     }
 
     @PostMapping("/home/FoodItems/AddItem")

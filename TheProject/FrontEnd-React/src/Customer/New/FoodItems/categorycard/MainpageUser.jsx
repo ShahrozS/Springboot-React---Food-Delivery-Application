@@ -68,10 +68,10 @@ count++;
 
   return (
   
-  <div className="text-center items-center">
+  <div className="text-center items-center backdrop-blur-sm">
      <NavbarUser orderid = {orderid}/>
      <h1 className="text-center text-7xl text-black font-semibold m-10 ">Select A Category</h1>
-     <div className="  gap-12 p-9  m-22 backdrop-blur-sm">
+     <div className="  gap-12 p-9  m-22 ">
 
     <AllCardsOfCategoryUser orderid={orderid} />
      

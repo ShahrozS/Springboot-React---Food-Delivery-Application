@@ -141,10 +141,11 @@ padding: 7px;
   font-weight: 200;
   color: white;
   font-weight: 700;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1rem 1rem 1rem ;
   border-radius: 5px;
-  margin-bottom: 1rem;
-  width:300px;
+  width:400px;
+
+  margin-left: 1rem;
 
   text-align: center;
   align-self: center;

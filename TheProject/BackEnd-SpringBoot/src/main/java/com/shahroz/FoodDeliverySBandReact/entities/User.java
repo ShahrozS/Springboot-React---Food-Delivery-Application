@@ -26,7 +26,7 @@ import java.util.Set;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long user_id;
     @Column(unique = true)
     private String email;
@@ -49,6 +49,7 @@ public class User implements UserDetails {
     @JsonIgnore
     private List<Reviews> reviews;
 
+    private int userType;
 
     public Long getUser_id() {
         return user_id;

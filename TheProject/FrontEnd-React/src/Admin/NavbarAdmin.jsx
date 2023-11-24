@@ -6,7 +6,7 @@ const navigation = [
   { name: 'Home', Link:'/admin/home', href: '#', current: true },
   { name: 'Categories',Link:'/admin/home/Categories', href: '#', current: false },
   { name: 'Food Items', Link:'/admin/home/FoodItems',href: '#', current: false },
-  { name: 'Users',Link:'/admin/home/Users', href: '#', current: false },
+  { name: 'Users',Link:'/admin/home/AllUsers', href: '#', current: false },
   { name: 'Orders',Link:'/admin/home/Orders', href: '#', current: false },
 
 ]
