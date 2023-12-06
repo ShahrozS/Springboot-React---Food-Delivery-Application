@@ -3,8 +3,10 @@ package com.shahroz.FoodDeliverySBandReact.Services;
 import com.shahroz.FoodDeliverySBandReact.entities.User;
 import com.shahroz.FoodDeliverySBandReact.repository.Userrepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -60,16 +62,31 @@ return userrepository.save(existinguser);
 
 
     }
+    private static final int MAX_RETRY_COUNT = 3;
 
+    @Transactional
     @Override
     public Optional<User> deleteUser(Long id) {
+        int retryCount = 0;
 
-        Optional<User> user = userrepository.findById(id);
- userrepository.deleteById(id);
+        while (retryCount < MAX_RETRY_COUNT) {
+            try {
+                System.out.println(("Entered the try and deleting."));
+                Optional<User> user = userrepository.findById(id);
+                userrepository.deleteByID(id);
+                return user;
+            } catch (ObjectOptimisticLockingFailureException ex) {
 
- return user;
+                retryCount++;
 
+            }
+        }
+
+
+
+        throw new RuntimeException("Failed to delete user after multiple retries.");
     }
+
 
 
     @Override

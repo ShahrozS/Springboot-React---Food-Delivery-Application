@@ -17,7 +17,8 @@ const navigation = [
   { name: 'Previous Orders', Link:'/user/home/previousorder',href: '#', current: false },
   { name: 'Manage Account',Link:'/user/home/manageaccount', href: '#', current: false },
   { name: `Order Status `,Link:'/user/home/orderstatus', href: '#', current: false },
-
+  {name:'Write a Review' , Link:'/user/home/review',href:'#',current:false}
+  ,{name:'Previous Reviews',link:'/user/home/previousreviews',href:'#',current:false},
 ]
 
 

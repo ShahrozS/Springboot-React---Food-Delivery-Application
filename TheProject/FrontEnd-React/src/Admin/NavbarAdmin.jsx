@@ -8,7 +8,7 @@ const navigation = [
   { name: 'Food Items', Link:'/admin/home/FoodItems',href: '#', current: false },
   { name: 'Users',Link:'/admin/home/AllUsers', href: '#', current: false },
   { name: 'Orders',Link:'/admin/home/AllOrders', href: '#', current: false },
-
+  {name: 'Reviews' , Link:'/admin/home/reviews' , href:'#',current: false},
 ]
 
 function classNames(...classes) {

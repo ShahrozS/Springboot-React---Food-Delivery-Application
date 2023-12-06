@@ -89,7 +89,14 @@ const dispatch = (orderid) =>{
 
 
   return (
-    <div className='categoryorder'>
+ 
+ <div>
+    {
+
+    Order.status!=='Dispatched'?(
+
+  
+  <div className='categoryorder'>
       
         <p>Order no. {Order.order_id}  By  {email}</p>
         <div>
@@ -99,5 +106,11 @@ const dispatch = (orderid) =>{
             onClick={()=>{dispatch(Order.order_id)}} className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Dispatch</button>
         </div>
     </div>
+
+    ):<div className='  categoryorder  bg-dark'>
+      <p>{Order.order_id} is {Order.status} </p>
+    </div>
+
+    }</div>
   )
 }

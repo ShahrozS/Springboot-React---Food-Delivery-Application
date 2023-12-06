@@ -37,6 +37,7 @@ public class User implements UserDetails {
     private String address;
     private String phone_number;
 
+
     @Enumerated(EnumType.STRING)
     @JsonIgnore
     private Role role;
@@ -50,7 +51,8 @@ public class User implements UserDetails {
     private List<Reviews> reviews;
 
     private int userType;
-
+    @Version
+    private Long version;
     public Long getUser_id() {
         return user_id;
     }

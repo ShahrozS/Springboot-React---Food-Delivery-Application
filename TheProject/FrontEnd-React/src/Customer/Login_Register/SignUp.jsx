@@ -27,7 +27,7 @@ export default function Signup() {
   const [address, setAddress] = useState('');
   const[confirmpassword,setConfirmpassword] = useState('');
   const [message, setMessage] = useState('');
-
+const[flag,setFlag] = useState(0);
 const handleSubmit = e =>{
   e.preventDefault()
   const data = {
@@ -63,6 +63,7 @@ fetch('http://localhost:8090/auth/create-user', {
   if(response.ok){
     console.log('User Created');
     setMessage("User Registered - Go back to login page.")
+    setFlag(1);
   }
   else{
     console.error('User Not created');
@@ -90,14 +91,22 @@ function cancel(){
 
 
   return (
-
-    <div className='flex h-screen p-44 pt-10 pl-4 backdrop-blur-sm justify-center '>
-   <div> 
+    
+    <div className=' backdrop-blur-sm'>
+    <div >       <h1 className='h-32  shadow-2xl flex items-center justify-center text-6xl font-bold bg-white mb-4 text-black  '>Register your Account.
+    
+   
+    </h1>
+    
+    <div className='flex h-screen p-44 pt-10 pl-4  justify-center '>
+   
+    <div> 
     <Link to="/auth/login">
     <button
-    className='rounded-md bg-primary  px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Login Screen</button>
+    className='rounded-md bg-black mr-4   px-3 py-2 text-lg font-semibold text-white shadow-sm hover:bg-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Login Screen</button>
     </Link>
-    </div>   
+    </div> 
+ 
    
 
     <form onSubmit={handleSubmit}>
@@ -106,12 +115,11 @@ function cancel(){
 
         <div className="border-b border-gray-900/10 pb-12">
    
-        <h2 className="mt-10 text-center text-4xl font-bold leading-9 tracking-tight text-gray-900">
-              Register your account
-            </h2>     
+      
             
             <span
-    className=' text-lg font-semibold text-red text-center' 
+    className={`ml-6 text-lg font-semibold ${flag === 1 ? 'bg-red ' : 'bg-transparent'} text-white p-4 rounded-lg text-center`}
+
     value={message}
     onChange={(e) =>setMessage(e.target.value)}
     >{message}</span>
@@ -124,6 +132,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input 
+                required
                   type="text"
                   name="first-name"
                   id="first-name"
@@ -141,6 +150,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input
+                   required
                   type="text"
                   name="last-name"
                   id="last-name"
@@ -158,7 +168,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input
-              
+                 required
                   name="email"
                   type="Text"
                   autoComplete="email"
@@ -174,7 +184,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input
-               
+                  required
                   name="email"
                   type="password"
                   autoComplete="password"
@@ -192,7 +202,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input
-           
+              required
                   name="email"
                   type="Password"
                   value={confirmpassword}
@@ -211,6 +221,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input
+                   required
                   type="text"
                   name="street-address"
                   id="street-address"
@@ -228,6 +239,7 @@ function cancel(){
               </label>
               <div className="mt-2">
                 <input
+                   required
                   type="tel"
                   name="phone"
                   id="phone"
@@ -257,6 +269,8 @@ function cancel(){
         </button>
       </div>
     </form>
+    
     </div>
+    </div></div>
   )
 }

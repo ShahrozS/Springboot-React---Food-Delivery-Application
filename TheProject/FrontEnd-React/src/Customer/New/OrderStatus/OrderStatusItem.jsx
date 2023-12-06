@@ -76,9 +76,7 @@ export const OrderStatusitem = ({index,Order}) => {
     <div className='previousorder'>
     
         <p>Order no. {Order.order_id}</p>
-        <div>
-            <button  className='w-20 p-1 bg-red rounded-lg text-black hover:bg-white '>Reorder</button>
-        </div>
+      
     </div>
 
     <div className='previousorderdetails'>

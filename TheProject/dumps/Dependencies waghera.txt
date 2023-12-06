@@ -1,3 +1,15 @@
+
+Step 1: The database
+Install postgres given in the folder 
+Open pgmyadmin4
+Create a new database named "FoodDelivery"
+Right click the database, click on "Restore"
+Click on ... on file name option, select FoodDelivery SQL file available in the folder
+
+
+In VS code, in the terminal select powershell, go to the FrontEnd-React directory
+
+install these:
 npm install vite@
 npm install @mui/material @emotion/react @emotion/styled
 npm install react-router-dom
@@ -7,7 +19,10 @@ tailwind
 npm install -D tailwindcss
 npx tailwindcss init
 
+npm i @heroicons/react
 
+
+Do this:
 replace tailwindconfig
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -19,8 +34,9 @@ module.exports = {
 }
 
 
-npm i @heroicons/react
-
-
-
 fortawesom, go to its website and download all
+
+
+
+For spring boot, you may have to change the password or username of the database, in the Application.properties section.
+

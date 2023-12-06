@@ -139,6 +139,10 @@ method:"Delete",
     console.log("Failed to fetch user")
   }
 
+}).then((data)=>{
+
+console.log(data , " after delete");
+
 }).catch((error)=>{
   console.log("Error " , error);
 })

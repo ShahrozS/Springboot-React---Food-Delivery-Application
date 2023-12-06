@@ -2,6 +2,7 @@ package com.shahroz.FoodDeliverySBandReact.repository;
 
 import com.shahroz.FoodDeliverySBandReact.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -17,5 +18,9 @@ public interface Userrepository extends JpaRepository<User,Long> {
     public Long findIdByEmail(@Param("email") String email);
 
     public Optional<User> findByEmail(String email);
+
+    @Modifying
+    @Query("Delete from User u where u.user_id = :id ")
+    public void deleteByID(Long id);
 
 }

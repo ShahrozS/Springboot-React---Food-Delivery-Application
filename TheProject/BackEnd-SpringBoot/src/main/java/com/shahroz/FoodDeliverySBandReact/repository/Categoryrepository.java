@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 
+@Repository
 public interface Categoryrepository extends JpaRepository<Category,Long> {
 
 //    @Query("SELECT e.category_id FROM Category e WHERE e.category_name = :name")

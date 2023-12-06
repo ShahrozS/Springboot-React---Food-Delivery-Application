@@ -5,6 +5,7 @@ import com.shahroz.FoodDeliverySBandReact.entities.Delivery_Guy;
 import com.shahroz.FoodDeliverySBandReact.repository.Delivery_guyrepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,18 @@ public class DeliveryGuyService implements DeliveryGuyServiceInterface {
     @Override
     public void deleteDeliveryGuy(String id) {
         deliveryGuyrepository.deleteById(Long.parseLong(id));
+    }
+
+    @Transactional
+    public void updateDeliveryGuy(Long id, String status){
+        System.out.println("Updating delivery guy:  " + id +  " status : " + status);
+        deliveryGuyrepository.updateDelivery_Guy(id,status);
+    }
+
+    @Transactional
+    public void updateAllDeliveryGuy(){
+        System.out.println("Updating all delvery guy");
+        deliveryGuyrepository.updateAllDelivery_Guy();
     }
 
 }

@@ -13,5 +13,6 @@ public interface DeliveryGuyServiceInterface {
     public Delivery_Guy createDeliveryGuy(Delivery_Guy deliveryGuy);
 
     public void deleteDeliveryGuy(String id);
+    public void updateDeliveryGuy(Long id, String status);
 
     }

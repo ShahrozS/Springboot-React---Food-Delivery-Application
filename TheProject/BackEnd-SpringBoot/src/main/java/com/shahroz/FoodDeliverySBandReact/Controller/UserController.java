@@ -112,7 +112,7 @@ public class UserController {
     //    }
 
     }
-
+    @Transactional
     @PutMapping("/update-user/{userid}")
     public User updateUser(@RequestBody User user, @PathVariable String userid){
         Long user_id = Long.valueOf(userid);

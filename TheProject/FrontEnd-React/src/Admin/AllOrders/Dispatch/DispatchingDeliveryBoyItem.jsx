@@ -15,6 +15,7 @@ export const DispatchingDeliveryBoyItem = ({orderid,DeliveryGuy}) => {
 const[deliveryguy,setDeliveryGuy] = useState(DeliveryGuy);
 
 
+//Getting order
 useEffect(() => {
   const fetchData = async () => {
     try {
@@ -55,6 +56,25 @@ const HandleButton = async (e) => {
   try {
 
  
+    console.log("Updating delivery guy sattus" + DeliveryGuy['delivery_Guy_id']);
+    const updateDeliveryGuyStatus = await fetch(`http://localhost:8090/DeliveryBoys/update?deliveryguyid=${DeliveryGuy['delivery_Guy_id']}&status=Unavailable`  , {
+      method: 'Post',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      // body: JSON.stringify({
+      //   deliveryguyid: '3',//deliveryguy['delivery_guy_id'],
+      //   status: 'Unavailable',
+      // }), 
+    });
+    
+    if(updateDeliveryGuyStatus.ok){
+      console.log("Delivery guy status updated successfully");
+    }
+    else{
+      console.log("Status didnt update ;-; ");
+    }
 
     const currTime = new Date();
     currTime.setMinutes(currTime.getMinutes() + 50);
@@ -92,6 +112,15 @@ console.log("Order after button " , order);
       localStorage.setItem('deliveryid', deliveryData.delivery_id);
       const updatedDeliveryId = localStorage.getItem('deliveryid');
 console.log("Local storage:  " +  updatedDeliveryId);
+
+
+
+
+
+
+
+
+
     navigateTo('/admin/dispatch')
     } else {
       console.error('Failed to make Delivery');
@@ -109,6 +138,13 @@ console.log("Local storage:  " +  updatedDeliveryId);
   } catch (error) {
     console.error('Error parsing error details:', error);
   }
+
+
+
+
+
+
+
 }
 
 
@@ -152,7 +188,7 @@ console.log(orderid  + "Is going to get updated")
               <div><p >{DeliveryGuy.status}</p></div>
               <button 
               style={{ opacity: DeliveryGuy.status !== 'Available' ? 0.5 : 1 }}
-              disabled={DeliveryGuy.status !== 'Available'}
+              disabled={DeliveryGuy.status !== 'Available' }
               onClick={HandleButton}
               className='text-white bg-lightdark p-3 text-sm font-semibold mb-1 rounded-lg '>Assign </button>
             </div>

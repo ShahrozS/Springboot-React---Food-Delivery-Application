@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-    @RequestMapping("DeliveryBoys")
+        @RequestMapping("DeliveryBoys")
 
 public class DeliveryBoyController {
 
@@ -105,4 +105,23 @@ public class DeliveryBoyController {
             return null;
         }
     }
+
+//addition for db
+    @PostMapping("/update")
+    public void updateDeliveryGuy(@RequestParam String deliveryguyid, @RequestParam String status ){
+
+            Long deliveryguy_id = Long.valueOf(deliveryguyid);
+
+            System.out.println("in controller of delivery update " + deliveryguyid + status);
+        deliveryGuyService.updateDeliveryGuy(deliveryguy_id,status);
+    }
+
+    @GetMapping("/updateAll")
+    public void updateAllDeliveryGuy(){
+    deliveryGuyService.updateAllDeliveryGuy();
+    }
+
+
+
 }
+

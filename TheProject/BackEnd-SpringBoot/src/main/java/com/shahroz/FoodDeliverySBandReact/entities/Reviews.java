@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -21,9 +23,10 @@ public class Reviews {
     private int Stars;
 
 
-    @ManyToOne
+     @ManyToOne
     private User user;
 
-
+    @ManyToOne
+    private orders order;
 
 }

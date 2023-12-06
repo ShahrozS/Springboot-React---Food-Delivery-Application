@@ -29,6 +29,9 @@ import Users from './Admin/ManageUsers/User';
 import ManageAccount from './Customer/New/ManageAccount/ManageAccount';
 import { Reorder } from '@mui/icons-material';
 import Reorderr from './Customer/New/PreviousOrders/Reorder';
+import { ReviewFormPage } from './Customer/New/Reviews/Mainpage';
+import { AllReviewsAdmin } from './Admin/Reviews/allReviews';
+import { AllReviewsUser } from './Customer/New/Reviews/PreviousReviews/previousReviews';
 
 
 
@@ -153,6 +156,14 @@ function App() {
         
         <Route path='/admin/home/AllUsers' element={<Users/>}/>
 
+
+        //Reviews
+
+<Route path='/admin/home/reviews'  element={<AllReviewsAdmin/>}/>
+
+
+
+
 //Users route
       
         <Route path='/user/home/FoodItems' element={<MainpageUser/>}/>
@@ -182,6 +193,13 @@ function App() {
     
            //reorder
            <Route path="/user/home/reorder"element={<Reorderr/>}/>
+          
+           // ReviewFormPage
+          <Route path="/user/home/review" element={<ReviewFormPage/>}/>
+       
+          //all Reviews
+       <Route path='admin/home/previousreviews' element={<AllReviewsUser/>} />
+       
         </Routes> 
     </Router>
 
