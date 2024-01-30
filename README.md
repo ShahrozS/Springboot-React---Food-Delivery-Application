@@ -18,5 +18,12 @@ And I have used react as it allows me to do component based development so that 
 
 
 To run:
+1. Upload the sql file in postgres.
+2. change username and password in application.propersties in the backend folder.
 
+3. In frontend folder,
+run
+```js
+npm run dev
+```
 
