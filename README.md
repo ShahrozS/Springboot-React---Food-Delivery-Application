@@ -1,4 +1,4 @@
-![image](https://github.com/ShahrozS/SpringBootXReact_Application_FoodDelivery/assets/90262892/82b7e4d1-5310-4f17-a104-31d2080c8c6e)![image](https://github.com/ShahrozS/SpringBootXReact_Application_FoodDelivery/assets/90262892/c4858b01-3064-4860-b9b7-60469d295fca)# Full Stack Food Delivery Application
+## Full Stack Food Delivery Application
 ## Made using Java Spring boot, ReactJS with Tailwind CSS and PostgreSQL
 
 A full fledge food delivery application where an admin can manage food items, categories, users, delivery drivers.
