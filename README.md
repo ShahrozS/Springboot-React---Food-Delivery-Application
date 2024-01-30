@@ -1,4 +1,4 @@
-## Full Stack Food Delivery Application
+# Full Stack Food Delivery Application
 ## Made using Java Spring boot, ReactJS with Tailwind CSS and PostgreSQL
 
 A full fledge food delivery application where an admin can manage food items, categories, users, delivery drivers.
